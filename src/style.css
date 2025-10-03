@@ -1,0 +1,68 @@
+@import "tailwindcss";
+
+/* estilos personalizados: dentro de @layer components para que Tailwind los incluya */
+@layer components {
+  .img-card {
+    @apply relative overflow-hidden shadow-xl;
+    border-radius: 48px;
+  }
+
+  .img-card img {
+    @apply block w-full h-full;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  /* tarjeta pequeña (la que aparece debajo de los botones) */
+  .img-card--small {
+    border-radius: 36px;
+  }
+  .img-card--small::before {
+    content: "";
+    position: absolute;
+    width: 160px;
+    height: 160px;
+    background: var(--page-bg, #ffffff);
+    top: -48px;
+    left: -48px;
+    border-bottom-right-radius: 120px;
+    box-shadow: 0 0 0 18px var(--page-bg, #ffffff);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* tarjeta grande (la de la derecha) */
+  .img-card--large {
+    border-radius: 52px;
+  }
+  .img-card--large::before {
+    content: "";
+    position: absolute;
+    width: 240px;
+    height: 240px;
+    background: var(--page-bg, #ffffff);
+    top: -60px;
+    left: -60px;
+    border-bottom-right-radius: 180px;
+    box-shadow: 0 0 0 24px var(--page-bg, #ffffff);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .img-card--large::after {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 120px;
+    background: var(--page-bg, #ffffff);
+    bottom: -36px;
+    right: -36px;
+    border-top-left-radius: 120px;
+    box-shadow: 0 0 0 20px var(--page-bg, #ffffff);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .badge {
+    @apply bg-blue-600 text-white text-sm font-medium px-6 py-3 rounded-full shadow-lg;
+  }
+}
