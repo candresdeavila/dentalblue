@@ -6,7 +6,7 @@ export function renderWelcome() {
     <div class="relative max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 lg:gap-16 lg:items-start pt-8">
 
       <!-- Columna izquierda: texto + botones + mini foto -->
-      <div class="relative">
+      <div class="relative h-full">
         <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
           Welcome to <span class="text-blue-600">Smile Bright</span> Dental Care
         </h1>
@@ -32,7 +32,7 @@ export function renderWelcome() {
       </div>
 
       <!-- Columna derecha: imagen grande con badge -->
-      <div class="flex justify-center lg:justify-end relative mt-4">
+      <div class="flex justify-center lg:justify-end relative mt-4 h-full">
         <div class="w-80 lg:w-[520px] img-card img-card--large h-[600px] relative">
           <img src="./dentista-haciendo-un-chequeo-al-paciente.jpg" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
           <div class="absolute bottom-6 right-6 z-10">
