@@ -49,13 +49,12 @@ export function renderWelcome() {
 
     <!-- logos -->
     <div class="mt-24 max-w-5xl mx-auto px-6">
-      <div class="flex justify-center items-center flex-wrap gap-12 grayscale opacity-60">
-        <img src="/public/syngenta.svg" alt="CVS Health" class="h-6">
-        <img src="/public/allergan.svg" alt="Allergan" class="h-6">
-        <img src="/public/horizon.svg" alt="Horizon" class="h-6">
-        <img src="/public/cvs.svg" alt="Syngenta" class="h-6">
+      <div class="flex justify-center items-center flex-wrap grayscale opacity-60 gap-x-30">
+        <img src="./colgate-logo-1.svg" alt="Colgate" class="h-14 w-14">
+        <img src="./oral-b.svg" alt="Oral-B" class="h-14 w-14">
+        <img src="./polanco.png" alt="Oral-B" class="h-14 w-19">
+        <img src="./Logo-Adental.png" alt="Oral-B" class="h-6 w-14">
         <img src="/public/shire.svg" alt="Shire" class="h-6">
-        <img src="/public/eurofins.svg" alt="Eurofins" class="h-6">
       </div>
     </div>
   `;
