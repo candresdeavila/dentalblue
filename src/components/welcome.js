@@ -54,7 +54,6 @@ export function renderWelcome() {
         <img src="./oral-b.svg" alt="Oral-B" class="h-14 w-14">
         <img src="./polanco.png" alt="Oral-B" class="h-14 w-19">
         <img src="./Logo-Adental.png" alt="Oral-B" class="h-6 w-14">
-        <img src="/public/shire.svg" alt="Shire" class="h-6">
       </div>
     </div>
   `;
