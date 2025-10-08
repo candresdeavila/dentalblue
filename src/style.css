@@ -1,10 +1,8 @@
 @import "tailwindcss";
 
-/* estilos personalizados: dentro de @layer components para que Tailwind los incluya */
 @layer components {
   .img-card {
-    @apply relative overflow-hidden shadow-xl;
-    border-radius: 48px;
+    @apply relative overflow-hidden shadow-xl rounded-3xl; /* bordes normales y suaves */
   }
 
   .img-card img {
@@ -13,51 +11,27 @@
     object-position: center;
   }
 
-  /* tarjeta pequeña (la que aparece debajo de los botones) */
+  /* tarjeta pequeña */
   .img-card--small {
-    border-radius: 36px;
-  }
-  .img-card--small::before {
-    content: "";
-    position: absolute;
-    width: 160px;
-    height: 160px;
-    background: var(--page-bg, #ffffff);
-    top: -48px;
-    left: -48px;
-    border-bottom-right-radius: 120px;
-    box-shadow: 0 0 0 18px var(--page-bg, #ffffff);
-    pointer-events: none;
-    z-index: 1;
+    @apply rounded-3xl;
   }
 
-  /* tarjeta grande (la de la derecha) */
+  /* tarjeta grande */
   .img-card--large {
-    border-radius: 52px;
+    @apply rounded-3xl;
   }
-  .img-card--large::before {
-    content: "";
-    position: absolute;
-    width: 240px;
-    height: 240px;
-    background: var(--page-bg, #ffffff);
-    top: -60px;
-    left: -60px;
-    border-bottom-right-radius: 180px;
-    box-shadow: 0 0 0 24px var(--page-bg, #ffffff);
-    pointer-events: none;
-    z-index: 1;
-  }
+
+  /* detalle circular solo en la esquina inferior derecha */
   .img-card--large::after {
     content: "";
     position: absolute;
-    width: 180px;
-    height: 120px;
+    width: 160px;
+    height: 100px;
     background: var(--page-bg, #ffffff);
-    bottom: -36px;
-    right: -36px;
-    border-top-left-radius: 120px;
-    box-shadow: 0 0 0 20px var(--page-bg, #ffffff);
+    bottom: -32px;
+    right: -32px;
+    border-top-left-radius: 100px;
+    box-shadow: 0 0 0 16px var(--page-bg, #ffffff);
     pointer-events: none;
     z-index: 1;
   }

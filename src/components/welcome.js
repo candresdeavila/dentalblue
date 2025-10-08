@@ -38,10 +38,10 @@ export function renderWelcome() {
           <div class="absolute bottom-6 right-6 z-10">
             <div class="badge">12+ Years Experience</div>
           </div>
-          <!-- Logo circular -->
+          <!-- Logo circular 
           <div class="absolute -bottom-6 -right-6 w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center shadow-lg z-20">
             <img src="/public/tooth.svg" alt="Logo" class="w-12 h-12 text-white">
-          </div>
+          </div>-->
         </div>
       </div>
 
