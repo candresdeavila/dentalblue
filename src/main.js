@@ -6,6 +6,8 @@ import { createServicesSection } from "./components/services.js";
 import { createConfidenceSection } from "./components/confidence.js";
 import { renderTeam } from "./components/team.js";
 import { createBlogSection } from "./components/blog.js";
+import { renderPremiun } from "./components/premiunTreatment.js";
+import { Footer } from "./components/footer.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,4 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
   root.appendChild(createConfidenceSection());
   root.appendChild(renderTeam());
   root.appendChild(createBlogSection());
+  root.appendChild(renderPremiun());
+  
+  // Crear un contenedor para el footer y agregarlo de manera segura
+  const footerContainer = document.createElement('div');
+  footerContainer.innerHTML = Footer();
+  root.appendChild(footerContainer.firstElementChild);
 });

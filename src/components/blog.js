@@ -8,9 +8,9 @@ export function createBlogSection() {
     <div class="container mx-auto text-center mb-20">
       <h2 class="text-3xl font-bold mb-10">The Reasons Smile Bright is Unbeatable</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-         <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
-          <p class="text-4xl font-bold text-blue-600">25+</p>
-          <p class="text-gray-700 text-sm">Total Branches</p>
+          <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
+            <p class="text-4xl font-bold text-blue-600">25+</p>
+            <p class="text-gray-700 text-sm">Total Branches</p>
         </div>
         <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
           <p class="text-4xl font-bold text-blue-600">12+</p>
