@@ -8,6 +8,7 @@ import { renderTeam } from "./components/team.js";
 import { createBlogSection } from "./components/blog.js";
 import { renderPremiun } from "./components/premiunTreatment.js";
 import { Footer } from "./components/footer.js";
+import { renderWhatsappButton } from "./components/whatsappButton.js";
 
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -25,4 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const footerContainer = document.createElement('div');
   footerContainer.innerHTML = Footer();
   root.appendChild(footerContainer.firstElementChild);
+
+   // ✅ Botón flotante de WhatsApp (GLOBAL)
+  document.body.appendChild(renderWhatsappButton());
 });

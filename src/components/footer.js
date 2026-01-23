@@ -1,6 +1,6 @@
 export function Footer() {
   return `
-    <footer class="bg-white text-gray-700 pt-16 pb-8 border-t">
+    <footer class="bg-white text-gray-700 pt-16 pb-8">
       <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         
         <!-- Columna 1: Logo + Contacto -->
@@ -56,7 +56,7 @@ export function Footer() {
       </div>
 
       <!-- Línea divisoria -->
-      <div class="border-t mt-12 pt-8">
+      <div class="border-t border-gray-200 mt-12 pt-8">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
           
           <p class="text-sm text-gray-500">
