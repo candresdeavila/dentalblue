@@ -8,7 +8,7 @@ export function Footer() {
           <div class="flex items-center mb-4">
             <!-- Logo -->
              <a href="#" class="flex items-center space-x-2">
-              <img src="./tooth.png" alt="Smile Bright Logo" class="h-10 w-10">
+              <img src="src/assets/icons/tooth.png" alt="Smile Bright Logo" class="h-10 w-10">
               <span class="font-bold text-xl text-gray-900">Dental Blue</span>
              </a>
           </div>

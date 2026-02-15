@@ -26,7 +26,7 @@ export function renderWelcome() {
         <!-- mini imagen debajo de los botones -->
         <div class="mt-12 w-72 relative z-10">
           <div class="img-card img-card--small h-72">
-            <img src="./dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
+            <img src="src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
           </div>
         </div>
       </div>
@@ -34,7 +34,7 @@ export function renderWelcome() {
       <!-- Columna derecha: imagen grande con badge -->
       <div class="flex justify-center lg:justify-end relative mt-4 h-full">
         <div class="w-80 lg:w-[520px] img-card img-card--large h-[600px] relative">
-          <img src="./dentista-haciendo-un-chequeo-al-paciente.jpg" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
+          <img src="src/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.jpg" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
           <div class="absolute bottom-6 right-6 z-10">
             <div class="badge">12+ Years Experience</div>
           </div>
@@ -50,10 +50,10 @@ export function renderWelcome() {
     <!-- logos -->
     <div class="mt-24 max-w-5xl mx-auto px-6">
       <div class="flex justify-center items-center flex-wrap grayscale opacity-60 gap-x-30">
-        <img src="./colgate-logo-1.svg" alt="Colgate" class="h-14 w-14">
-        <img src="./oral-b.svg" alt="Oral-B" class="h-14 w-14">
-        <img src="./polanco.png" alt="Oral-B" class="h-14 w-19">
-        <img src="./Logo-Adental.png" alt="Oral-B" class="h-6 w-14">
+        <img src="src/assets/logos/colgate-logo-1.svg" alt="Colgate" class="h-14 w-14">
+        <img src="src/assets/logos/oral-b.svg" alt="Oral-B" class="h-14 w-14">
+        <img src="src/assets/logos/polanco.png" alt="Oral-B" class="h-14 w-19">
+        <img src="src/assets/logos/Logo-Adental.png" alt="Oral-B" class="h-6 w-14">
       </div>
     </div>
   `;

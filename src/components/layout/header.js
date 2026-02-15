@@ -1,25 +1,32 @@
 export function header() {
-    document.querySelector('#app').innerHTML = `
- <header class="w-full bg-white">
+  document.querySelector("#app").insertAdjacentHTML(
+    "beforebegin",
+    `
+<header class="w-full bg-white sticky top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
-      
+
       <!-- Logo -->
-      <a href="#" class="flex items-center space-x-2">
-        <img src="./tooth.png" alt="Smile Bright Logo" class="h-10 w-10">
+      <a href="/" data-link="home" class="flex items-center space-x-2">
+        <img src="src/assets/icons/tooth.png" alt="Dental Blue Logo" class="h-10 w-10">
         <span class="font-bold text-xl text-gray-900">Dental Blue</span>
       </a>
 
       <!-- Navigation (desktop) -->
       <nav class="hidden md:flex space-x-8 text-gray-600 font-medium">
-        <a href="#about" class="hover:text-blue-500">About Us</a>
+        <a href="/about" data-link="about" class="hover:text-blue-500">About Us</a>
         <a href="#services" class="hover:text-blue-500">Our Services</a>
         <a href="#team" class="hover:text-blue-500">Team</a>
         <a href="#blog" class="hover:text-blue-500">Blog</a>
       </nav>
 
       <!-- Contact button -->
-      <a href="#contact" class="hidden md:inline-block bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition">
+      <a
+        href="https://wa.me/XXXXXXXXXX"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hidden md:inline-block bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition"
+      >
         Contact Us
       </a>
 
@@ -34,15 +41,21 @@ export function header() {
   </div>
 
   <!-- Mobile nav -->
-  <div id="menu" class="hidden md:hidden px-4 pb-4 space-y-2 text-gray-600 font-medium">
-    <a href="#about" class="block hover:text-blue-500">About Us</a>
+  <div id="menu" class="hidden md:hidden px-4 pb-4 space-y-2 text-gray-600 font-medium bg-white">
+    <a href="/about" data-link="about" class="block hover:text-blue-500">About Us</a>
     <a href="#services" class="block hover:text-blue-500">Our Services</a>
     <a href="#team" class="block hover:text-blue-500">Team</a>
     <a href="#blog" class="block hover:text-blue-500">Blog</a>
-    <a href="#contact" class="block bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition">
+    <a
+      href="https://wa.me/XXXXXXXXXX"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
+    >
       Contact Us
     </a>
   </div>
 </header>
 `
+  );
 }

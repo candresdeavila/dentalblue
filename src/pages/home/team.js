@@ -18,27 +18,27 @@ export function renderTeam() {
             {
               name: "Dr. Shelley Robinson",
               role: "Dental Surgeon",
-              img: "dentista-con-herramientas-de-odontologia-aislado.jpg",
+              img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
             },
             {
               name: "Dr. Ralph Edwards",
               role: "Dental Surgeon",
-              img: "dentista-con-herramientas-de-odontologia-aislado.jpg",
+              img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
             },
             {
               name: "Dr. Nicola Lester",
               role: "Dental Surgeon",
-              img: "dentista-con-herramientas-de-odontologia-aislado.jpg",
+              img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
             },
             {
               name: "Dr. Daniel Foster",
               role: "Orthodontist",
-              img: "dentista-con-herramientas-de-odontologia-aislado.jpg",
+              img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
             },
             {
               name: "Dr. Emma Hayes",
               role: "Pediatric Dentist",
-              img: "dentista-con-herramientas-de-odontologia-aislado.jpg",
+              img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
             },
           ]
             .map(

@@ -17,7 +17,7 @@ export function renderWhatsappButton() {
   `;
 
   link.innerHTML = `
-    <img src="/whatsapp.svg" alt="WhatsApp" class="w-6 h-6 md:w-7 md:h-7" />
+    <img src="src/assets/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6 md:w-7 md:h-7" />
   `;
 
   return link;
