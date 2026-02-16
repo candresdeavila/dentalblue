@@ -6,13 +6,13 @@ import { initNavbar } from "./components/layout/navbar.js";
 import { Footer } from "./components/layout/footer.js";
 
 // UI
-import { renderWhatsappButton } from "./components/ui/whatsappButton.js";
+import "./components/ui/whatsappButton.js";
 
 // Home page
 import { renderWelcome } from "./pages/home/welcome.js";
 import { createServicesSection } from "./pages/home/services.js";
 import { createConfidenceSection } from "./pages/home/confidence.js";
-import { renderTeam } from "./pages/home/team.js";
+import "./components/sections/team.js";
 import { createBlogSection } from "./pages/home/blog.js";
 import { renderPremiun } from "./pages/home/premiunTreatment.js";
 
@@ -34,12 +34,13 @@ function renderPage(contentFn) {
 ================================ */
 function renderHomePage() {
   const fragment = document.createDocumentFragment();
+  const team = document.createElement("team-section");
 
   fragment.append(
     renderWelcome(),
     createServicesSection(),
     createConfidenceSection(),
-    renderTeam(),
+    team,
     createBlogSection(),
     renderPremiun()
   );
@@ -68,5 +69,5 @@ document.addEventListener("DOMContentLoaded", () => {
   document.body.appendChild(footerContainer.firstElementChild);
 
   // WhatsApp floating button (global)
-  document.body.appendChild(renderWhatsappButton());
+  document.body.appendChild(document.createElement("whatsapp-button"));
 });
