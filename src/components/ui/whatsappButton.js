@@ -18,7 +18,7 @@ class WhatsAppButton extends HTMLElement {
           transition-all duration-300
         "
       >
-        <img src="src/assets/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6 md:w-7 md:h-7" />
+        <img src="/assets/icons/whatsapp.svg" alt="WhatsApp" class="w-6 h-6 md:w-7 md:h-7" />
       </a>
     `;
   }

@@ -15,7 +15,7 @@ export function createServicesSection() {
                     group-hover:bg-white group-hover:text-gray-800 group-hover:shadow-2xl group-hover:scale-[1.02]">
           <div class="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto transition-all
                       group-hover:bg-blue-700">
-            <img src="src/assets/icons/clean-teeth.svg" alt="clean-teeth" class="invert w-10 h-10"/>
+            <img src="/assets/icons/clean-teeth.svg" alt="clean-teeth" class="invert w-10 h-10"/>
           </div>
           <h3 class="text-xl font-bold mb-4 group-hover:text-gray-900">Teeth Whitening</h3>
           <p class="text-blue-100 group-hover:text-gray-700 mb-6">
@@ -34,7 +34,7 @@ export function createServicesSection() {
                     group-hover:bg-white group-hover:text-gray-800 group-hover:shadow-2xl group-hover:scale-[1.02]">
           <div class="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto transition-all
                       group-hover:bg-blue-700">
-            <img src="src/assets/icons/implant.svg" alt="teeth-implant" class="invert w-10 h-10"/>
+            <img src="/assets/icons/implant.svg" alt="teeth-implant" class="invert w-10 h-10"/>
           </div>
           <h3 class="text-xl font-bold mb-4 group-hover:text-gray-900">Dental Implant</h3>
           <p class="text-blue-100 group-hover:text-gray-700 mb-6">
@@ -53,7 +53,7 @@ export function createServicesSection() {
                     group-hover:bg-white group-hover:text-gray-800 group-hover:shadow-2xl group-hover:scale-[1.02]">
           <div class="bg-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto transition-all
                       group-hover:bg-blue-700">
-            <img src="src/assets/icons/tooth-_1_.svg" alt="toothexam" class="invert w-10 h-10"/>
+            <img src="/assets/icons/tooth-_1_.svg" alt="toothexam" class="invert w-10 h-10"/>
           </div>
           <h3 class="text-xl font-bold mb-4 group-hover:text-gray-900">Dental Exams</h3>
           <p class="text-blue-100 group-hover:text-gray-700 mb-6">

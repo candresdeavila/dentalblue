@@ -29,7 +29,7 @@ export function renderAboutUs() {
           </div>
           <div class="flex justify-center lg:justify-end relative">
             <div class="w-80 lg:w-[520px] img-card img-card--large h-[500px] relative">
-              <img src="src/assets/images/about/dental-clinic-interior.jpg" alt="Dental Blue Modern Clinic" class="object-cover">
+              <img src="/assets/images/about/dental-clinic-interior.jpg" alt="Dental Blue Modern Clinic" class="object-cover">
               <div class="absolute -bottom-6 -right-6 bg-blue-600 text-white rounded-2xl p-4 shadow-xl z-10">
                 <div class="text-3xl font-bold">12+</div>
                 <div class="text-sm opacity-90">Years of Excellence</div>
@@ -217,12 +217,12 @@ export function renderAboutUs() {
 
         <div class="grid sm:grid-cols-2 max-w-2xl mx-auto gap-8">
           <div class="bg-white rounded-3xl p-6 shadow-lg text-gray-900 text-center hover:shadow-xl transition-shadow">
-            <img src="src/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dr. Maria Santos" class="w-40 h-40 object-cover rounded-2xl mx-auto mb-4">
+            <img src="/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dr. Maria Santos" class="w-40 h-40 object-cover rounded-2xl mx-auto mb-4">
             <h3 class="text-lg font-semibold">Dr. Maria Santos</h3>
             <p class="text-sm text-gray-500">Founder & Lead Dentist</p>
           </div>
           <div class="bg-white rounded-3xl p-6 shadow-lg text-gray-900 text-center hover:shadow-xl transition-shadow">
-            <img src="src/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dr. Carlos Rivera" class="w-40 h-40 object-cover rounded-2xl mx-auto mb-4">
+            <img src="/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dr. Carlos Rivera" class="w-40 h-40 object-cover rounded-2xl mx-auto mb-4">
             <h3 class="text-lg font-semibold">Dr. Carlos Rivera</h3>
             <p class="text-sm text-gray-500">Orthodontist Specialist</p>
           </div>

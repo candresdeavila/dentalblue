@@ -83,7 +83,7 @@ export function createBlogSection() {
     <!-- Lado derecho -->
     <div class="relative">
       <img
-        src="src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg"
+        src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg"
         alt="Dentist treating patient"
         class="rounded-[40px] shadow-2xl w-full object-cover"
       />

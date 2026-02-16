@@ -9,7 +9,7 @@ export function createConfidenceSection() {
       <!-- 🦷 Imagen -->
       <div class="rounded-[2rem] overflow-hidden shadow-lg">
         <img 
-          src="src/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.jpg" 
+          src="/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.jpg" 
           alt="Dentist with patient" 
           class="w-full h-100 object-cover"
         />
@@ -29,19 +29,19 @@ export function createConfidenceSection() {
         <!-- ✅ Lista de beneficios -->
         <ul class="space-y-3 mb-8">
           <li class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="src/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
+            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
             <span class="text-gray-700">Experienced and Caring Team of Professionals</span>
           </li>
           <li class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="src/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
+            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
             <span class="text-gray-700">Advanced Technology for Optimal Care Solutions</span>
           </li>
           <li class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="src/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
+            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
             <span class="text-gray-700">A Wide Range of Services to Meet All Your Needs</span>
           </li>
           <li class="flex items-center gap-3">
-            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="src/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
+            <i class="fa-solid fa-circle-check text-blue-500 text-lg"><img src="/assets/icons/check.png" alt="check" class="h-5 w-5"></i>
             <span class="text-gray-700">Personalized Care Approaches for Each Patient</span>
           </li>
         </ul>

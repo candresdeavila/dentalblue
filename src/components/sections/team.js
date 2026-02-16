@@ -7,27 +7,27 @@ class TeamSection extends HTMLElement {
       {
         name: "Dr. Shelley Robinson",
         role: "Dental Surgeon",
-        img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
       },
       {
         name: "Dr. Ralph Edwards",
         role: "Dental Surgeon",
-        img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
       },
       {
         name: "Dr. Nicola Lester",
         role: "Dental Surgeon",
-        img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
       },
       {
         name: "Dr. Daniel Foster",
         role: "Orthodontist",
-        img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
       },
       {
         name: "Dr. Emma Hayes",
         role: "Pediatric Dentist",
-        img: "src/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
       },
     ];
 
