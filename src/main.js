@@ -1,9 +1,9 @@
 import "./style.css";
 
 // Layout
-import { header } from "./components/layout/header.js";
+import "./components/layout/header.js";
 import { initNavbar } from "./components/layout/navbar.js";
-import { Footer } from "./components/layout/footer.js";
+import "./components/layout/footer.js";
 
 // UI
 import "./components/ui/whatsappButton.js";
@@ -34,13 +34,15 @@ function renderPage(contentFn) {
 ================================ */
 function renderHomePage() {
   const fragment = document.createDocumentFragment();
-  const team = document.createElement("team-section");
+  const teamWrapper = document.createElement("div");
+  teamWrapper.id = "team";
+  teamWrapper.appendChild(document.createElement("team-section"));
 
   fragment.append(
     renderWelcome(),
     createServicesSection(),
     createConfidenceSection(),
-    team,
+    teamWrapper,
     createBlogSection(),
     renderPremiun()
   );
@@ -53,7 +55,10 @@ function renderHomePage() {
 ================================ */
 document.addEventListener("DOMContentLoaded", () => {
   // Header & Navbar
-  header();
+  document.body.insertAdjacentElement(
+    "afterbegin",
+    document.createElement("app-header")
+  );
   initNavbar({
     renderPage,
     renderHomePage,
@@ -64,9 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPage(renderHomePage);
 
   // Footer (global)
-  const footerContainer = document.createElement("div");
-  footerContainer.innerHTML = Footer();
-  document.body.appendChild(footerContainer.firstElementChild);
+  document.body.appendChild(document.createElement("app-footer"));
 
   // WhatsApp floating button (global)
   document.body.appendChild(document.createElement("whatsapp-button"));

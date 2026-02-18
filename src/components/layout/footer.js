@@ -1,5 +1,6 @@
-export function Footer() {
-  return `
+class AppFooter extends HTMLElement {
+  connectedCallback() {
+    this.innerHTML = `
     <footer class="bg-white text-gray-700 pt-16 pb-8">
       <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
         
@@ -82,4 +83,7 @@ export function Footer() {
       </div>
     </footer>
   `;
+  }
 }
+
+customElements.define("app-footer", AppFooter);

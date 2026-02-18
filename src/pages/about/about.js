@@ -205,35 +205,9 @@ export function renderAboutUs() {
       </div>
     </div>
 
-    <!-- Team Preview -->
-    <div id="team" class="py-20 bg-blue-600 text-white">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">Meet Our Leadership</h2>
-          <p class="text-white/80 max-w-2xl mx-auto">
-            Our experienced leadership team is dedicated to maintaining the highest standards of dental care
-          </p>
-        </div>
-
-        <div class="grid sm:grid-cols-2 max-w-2xl mx-auto gap-8">
-          <div class="bg-white rounded-3xl p-6 shadow-lg text-gray-900 text-center hover:shadow-xl transition-shadow">
-            <img src="/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dr. Maria Santos" class="w-40 h-40 object-cover rounded-2xl mx-auto mb-4">
-            <h3 class="text-lg font-semibold">Dr. Maria Santos</h3>
-            <p class="text-sm text-gray-500">Founder & Lead Dentist</p>
-          </div>
-          <div class="bg-white rounded-3xl p-6 shadow-lg text-gray-900 text-center hover:shadow-xl transition-shadow">
-            <img src="/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dr. Carlos Rivera" class="w-40 h-40 object-cover rounded-2xl mx-auto mb-4">
-            <h3 class="text-lg font-semibold">Dr. Carlos Rivera</h3>
-            <p class="text-sm text-gray-500">Orthodontist Specialist</p>
-          </div>
-        </div>
-
-        <div class="text-center mt-12">
-          <a href="#team" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm inline-block">
-            View Full Team
-          </a>
-        </div>
-      </div>
+    <!-- Team Section (reused web component) -->
+    <div id="team" class="py-20 bg-white">
+      <team-section></team-section>
     </div>
 
     <!-- What Makes Us Different -->
@@ -276,7 +250,7 @@ export function renderAboutUs() {
             </div>
 
             <div>
-              <img src="./dental-team.jpg" alt="Dental Blue Team" class="rounded-[40px] shadow-2xl w-full object-cover">
+              <img src="/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dental Blue Team" class="rounded-[40px] shadow-2xl w-full object-cover">
             </div>
           </div>
         </div>

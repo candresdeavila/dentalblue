@@ -1,7 +1,13 @@
-export function header() {
-  document.querySelector("#app").insertAdjacentHTML(
-    "beforebegin",
-    `
+class AppHeader extends HTMLElement {
+  constructor() {
+    super();
+    this.menu = null;
+    this.isDocumentClickBound = false;
+    this.handleDocumentClick = this.handleDocumentClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.innerHTML = `
 <header class="w-full bg-white sticky top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between items-center h-16">
@@ -15,9 +21,9 @@ export function header() {
       <!-- Navigation (desktop) -->
       <nav class="hidden md:flex space-x-8 text-gray-600 font-medium">
         <a href="/about" data-link="about" class="hover:text-blue-500">About Us</a>
-        <a href="#services" class="hover:text-blue-500">Our Services</a>
-        <a href="#team" class="hover:text-blue-500">Team</a>
-        <a href="#blog" class="hover:text-blue-500">Blog</a>
+        <a href="#services" data-section="services" class="hover:text-blue-500">Our Services</a>
+        <a href="#team" data-section="team" class="hover:text-blue-500">Team</a>
+        <a href="#blog" data-section="blog" class="hover:text-blue-500">Blog</a>
       </nav>
 
       <!-- Contact button -->
@@ -43,9 +49,9 @@ export function header() {
   <!-- Mobile nav -->
   <div id="menu" class="hidden md:hidden px-4 pb-4 space-y-2 text-gray-600 font-medium bg-white">
     <a href="/about" data-link="about" class="block hover:text-blue-500">About Us</a>
-    <a href="#services" class="block hover:text-blue-500">Our Services</a>
-    <a href="#team" class="block hover:text-blue-500">Team</a>
-    <a href="#blog" class="block hover:text-blue-500">Blog</a>
+    <a href="#services" data-section="services" class="block hover:text-blue-500">Our Services</a>
+    <a href="#team" data-section="team" class="block hover:text-blue-500">Team</a>
+    <a href="#blog" data-section="blog" class="block hover:text-blue-500">Blog</a>
     <a
       href="https://wa.me/XXXXXXXXXX"
       target="_blank"
@@ -56,6 +62,32 @@ export function header() {
     </a>
   </div>
 </header>
-`
-  );
+`;
+
+    this.menuButton = this.querySelector("#menu-btn");
+    this.menu = this.querySelector("#menu");
+
+    if (!this.isDocumentClickBound) {
+      document.addEventListener("click", this.handleDocumentClick);
+      this.isDocumentClickBound = true;
+    }
+  }
+
+  disconnectedCallback() {
+    if (this.isDocumentClickBound) {
+      document.removeEventListener("click", this.handleDocumentClick);
+      this.isDocumentClickBound = false;
+    }
+  }
+
+  handleDocumentClick(event) {
+    if (!this.menu) return;
+
+    const isMenuOpen = !this.menu.classList.contains("hidden");
+    if (isMenuOpen && !this.contains(event.target)) {
+      this.menu.classList.add("hidden");
+    }
+  }
 }
+
+customElements.define("app-header", AppHeader);
