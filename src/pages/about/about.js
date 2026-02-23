@@ -4,42 +4,6 @@ export function renderAboutUs() {
   section.className = "bg-white";
 
   section.innerHTML = `
-    <!-- Hero Section -->
-    <div class="relative py-20 md:py-28 overflow-hidden bg-gradient-to-br from-blue-50 via-white to-white">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span class="inline-block bg-blue-100 text-blue-600 text-sm font-semibold px-4 py-1.5 rounded-full mb-4">About Us</span>
-            <h1 class="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-6">
-              Transforming Smiles, <span class="text-blue-600">Changing Lives</span>
-            </h1>
-            <p class="text-lg text-gray-600 max-w-xl mb-8">
-              At Dental Blue, we believe everyone deserves a healthy, beautiful smile.
-              For over 12 years, we've been dedicated to providing exceptional dental care
-              with a personal touch that makes our patients feel like family.
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <a href="#team" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
-                Meet Our Team
-              </a>
-              <a href="#contact" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm">
-                Schedule a Visit
-              </a>
-            </div>
-          </div>
-          <div class="flex justify-center lg:justify-end relative">
-            <div class="w-80 lg:w-[520px] img-card img-card--large h-[500px] relative">
-              <img src="/assets/images/about/dental-clinic-interior.jpg" alt="Dental Blue Modern Clinic" class="object-cover">
-              <div class="absolute -bottom-6 -right-6 bg-blue-600 text-white rounded-2xl p-4 shadow-xl z-10">
-                <div class="text-3xl font-bold">12+</div>
-                <div class="text-sm opacity-90">Years of Excellence</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <!-- Our Story Section -->
     <div class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
@@ -280,6 +244,10 @@ export function renderAboutUs() {
       </div>
     </div>
   `;
+
+  const heroSection = document.createElement("hero-section");
+  heroSection.setAttribute("variant", "about");
+  section.prepend(heroSection);
 
   return section;
 }
