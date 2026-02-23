@@ -11,7 +11,7 @@ import "./components/sections/hero.js";
 
 // Home page
 import { renderWelcome } from "./pages/home/welcome.js";
-import { createServicesSection } from "./pages/home/services.js";
+import { createExpandableServicesSection } from "./components/sections/servicesExpandable.js";
 import { createConfidenceSection } from "./pages/home/confidence.js";
 import "./components/sections/team.js";
 import { createBlogSection } from "./pages/home/blog.js";
@@ -41,7 +41,7 @@ function renderHomePage() {
 
   fragment.append(
     renderWelcome(),
-    createServicesSection(),
+    createExpandableServicesSection({ variant: "home" }),
     createConfidenceSection(),
     teamWrapper,
     createBlogSection(),

@@ -1,3 +1,5 @@
+import { createExpandableServicesSection } from "../../components/sections/servicesExpandable.js";
+
 export function renderAboutUs() {
 
   const section = document.createElement('section');
@@ -174,52 +176,7 @@ export function renderAboutUs() {
       <team-section></team-section>
     </div>
 
-    <!-- What Makes Us Different -->
-    <div class="py-20">
-      <div class="max-w-7xl mx-auto px-6 lg:px-8">
-        <div class="bg-blue-600 text-white rounded-3xl p-10 md:p-16">
-          <h2 class="text-2xl md:text-4xl font-semibold text-center mb-10">
-            What Makes Us Different
-          </h2>
-
-          <div class="grid md:grid-cols-2 gap-10 items-center">
-            <div class="space-y-6">
-              <div class="bg-white/10 border border-white/20 rounded-3xl p-6">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold shrink-0">01</div>
-                  <div>
-                    <h3 class="font-bold text-lg mb-2">Advanced Technology</h3>
-                    <p class="text-white/80 leading-relaxed">We use digital X-rays, intraoral cameras, and 3D imaging for accurate diagnoses and effective treatments.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-white/10 border border-white/20 rounded-3xl p-6">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold shrink-0">02</div>
-                  <div>
-                    <h3 class="font-bold text-lg mb-2">A Dedicated Team</h3>
-                    <p class="text-white/80 leading-relaxed">Our skilled dentists prioritize outstanding patient care with personalized, high-quality dental services.</p>
-                  </div>
-                </div>
-              </div>
-              <div class="bg-white/10 border border-white/20 rounded-3xl p-6">
-                <div class="flex items-start gap-4">
-                  <div class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center font-bold shrink-0">03</div>
-                  <div>
-                    <h3 class="font-bold text-lg mb-2">Personalized Care</h3>
-                    <p class="text-white/80 leading-relaxed">We create tailored treatment plans following thorough examinations and thoughtful discussions with each patient.</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <img src="/assets/images/about/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Dental Blue Team" class="rounded-[40px] shadow-2xl w-full object-cover">
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div id="about-services-slot"></div>
 
     <!-- CTA Section -->
     <div class="py-20 bg-gray-50">
@@ -248,6 +205,11 @@ export function renderAboutUs() {
   const heroSection = document.createElement("hero-section");
   heroSection.setAttribute("variant", "about");
   section.prepend(heroSection);
+
+  const servicesSlot = section.querySelector("#about-services-slot");
+  if (servicesSlot) {
+    servicesSlot.replaceWith(createExpandableServicesSection({ variant: "about" }));
+  }
 
   return section;
 }
