@@ -44,7 +44,7 @@ class HeroSection extends HTMLElement {
                 <img src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
               </div>
             </div>
-          </div>
+          </div> 
 
           <div class="flex justify-center lg:justify-end relative mt-4 h-full">
             <div class="w-80 lg:w-[520px] img-card img-card--large h-[600px] relative">
