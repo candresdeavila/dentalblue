@@ -5,14 +5,14 @@ class TeamSection extends HTMLElement {
 
     this.members = [
       {
-        name: "Dr. Shelley Robinson",
-        role: "Dental Surgeon",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        name: "Dr. Angelica Cervantes",
+        role: "Lead Dentist",
+        img: "public/assets/images/team/dental_blue_staff1.jpeg",
       },
       {
-        name: "Dr. Ralph Edwards",
-        role: "Dental Surgeon",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        name: "Mariana",
+        role: "Dental Hygienist",
+        img: "public/assets/images/team/dental_blue_staff2.jpg",
       },
       {
         name: "Dr. Nicola Lester",
