@@ -3,6 +3,9 @@ class ChatWidget extends HTMLElement {
     super();
     this.isOpen = false;
     this.isTyping = false;
+    this.defaultPanelHeight = "min(520px, calc(100vh - 140px))";
+    this.defaultPanelMaxHeight = "calc(100vh - 140px)";
+    this.keyboardOffset = 80;
     this.messages = [
       {
         role: "model",
@@ -32,7 +35,7 @@ class ChatWidget extends HTMLElement {
 
       <section
         data-chat-panel
-        class="hidden fixed bottom-[8.5rem] right-4 md:bottom-[10rem] md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+        class="hidden fixed bottom-[8.5rem] right-4 md:bottom-[10rem] md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm h-[min(520px,calc(100vh-140px))] max-h-[calc(100vh-140px)] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col"
         aria-label="Chat con Sofía"
       >
         <header class="bg-[#1E90FF] text-white px-4 py-3 flex items-center justify-between">
@@ -53,7 +56,7 @@ class ChatWidget extends HTMLElement {
           </button>
         </header>
 
-        <div data-chat-messages class="h-80 max-h-[60vh] overflow-y-auto px-3 py-3 bg-slate-50 space-y-2"></div>
+        <div data-chat-messages class="flex-1 min-h-0 overflow-y-auto px-3 py-3 bg-slate-50 space-y-2"></div>
 
         <form data-chat-form class="p-3 border-t border-slate-200 bg-white flex items-center gap-2">
           <input
@@ -84,8 +87,31 @@ class ChatWidget extends HTMLElement {
     this.toggleButton.addEventListener("click", () => this.openChat());
     this.closeButton.addEventListener("click", () => this.closeChat());
     this.form.addEventListener("submit", (event) => this.handleSubmit(event));
+    this.input.addEventListener("focus", () => this.adjustForKeyboard());
+    this.input.addEventListener("blur", () => {
+      window.setTimeout(() => this.adjustForKeyboard(), 120);
+    });
+
+    this.viewportResizeHandler = () => {
+      const viewportHeight = window.visualViewport?.height || window.innerHeight;
+      this.adjustForKeyboard(viewportHeight);
+    };
+
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", this.viewportResizeHandler);
+    } else {
+      window.addEventListener("resize", this.viewportResizeHandler);
+    }
 
     this.renderMessages();
+  }
+
+  disconnectedCallback() {
+    if (window.visualViewport && this.viewportResizeHandler) {
+      window.visualViewport.removeEventListener("resize", this.viewportResizeHandler);
+    } else if (this.viewportResizeHandler) {
+      window.removeEventListener("resize", this.viewportResizeHandler);
+    }
   }
 
   openChat() {
@@ -93,16 +119,47 @@ class ChatWidget extends HTMLElement {
     this.panel.classList.remove("hidden");
     this.toggleButton.classList.add("hidden");
     this.input.focus();
+    this.adjustForKeyboard();
   }
 
   closeChat() {
     this.isOpen = false;
     this.panel.classList.add("hidden");
     this.toggleButton.classList.remove("hidden");
+    this.restorePanelHeight();
   }
 
   scrollToBottom() {
     this.messagesEl.scrollTop = this.messagesEl.scrollHeight;
+  }
+
+  getViewportHeight() {
+    return window.visualViewport?.height || window.innerHeight;
+  }
+
+  isKeyboardActive(viewportHeight) {
+    const screenHeight = window.screen?.height || window.innerHeight;
+    const isMobileViewport = window.matchMedia("(max-width: 767px)").matches;
+    return isMobileViewport && screenHeight - viewportHeight > 120;
+  }
+
+  restorePanelHeight() {
+    this.panel.style.height = this.defaultPanelHeight;
+    this.panel.style.maxHeight = this.defaultPanelMaxHeight;
+  }
+
+  adjustForKeyboard(viewportHeight = this.getViewportHeight()) {
+    if (!this.panel) return;
+
+    if (this.isKeyboardActive(viewportHeight)) {
+      const dynamicHeight = Math.max(260, Math.floor(viewportHeight - this.keyboardOffset));
+      this.panel.style.height = `${dynamicHeight}px`;
+      this.panel.style.maxHeight = `${dynamicHeight}px`;
+    } else {
+      this.restorePanelHeight();
+    }
+
+    window.requestAnimationFrame(() => this.scrollToBottom());
   }
 
   renderMessages() {
