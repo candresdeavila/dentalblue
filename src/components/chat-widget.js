@@ -3,6 +3,11 @@ class ChatWidget extends HTMLElement {
     super();
     this.isOpen = false;
     this.isTyping = false;
+    this.defaultPanelHeight = "min(520px, calc(100vh - 140px))";
+    this.defaultPanelMaxHeight = "calc(100vh - 140px)";
+    this.keyboardOffset = 80;
+    this.previousBodyOverflow = "";
+    this.mobileViewportHandler = null;
     this.messages = [
       {
         role: "model",
@@ -32,7 +37,7 @@ class ChatWidget extends HTMLElement {
 
       <section
         data-chat-panel
-        class="hidden fixed bottom-[8.5rem] right-4 md:bottom-[10rem] md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden"
+        class="hidden fixed bottom-[8.5rem] right-4 md:bottom-[10rem] md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm h-[min(520px,calc(100vh-140px))] max-h-[calc(100vh-140px)] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col"
         aria-label="Chat con Sofía"
       >
         <header class="bg-[#1E90FF] text-white px-4 py-3 flex items-center justify-between">
@@ -53,7 +58,7 @@ class ChatWidget extends HTMLElement {
           </button>
         </header>
 
-        <div data-chat-messages class="h-80 max-h-[60vh] overflow-y-auto px-3 py-3 bg-slate-50 space-y-2"></div>
+        <div data-chat-messages class="flex-1 min-h-0 overflow-y-auto px-3 py-3 bg-slate-50 space-y-2"></div>
 
         <form data-chat-form class="p-3 border-t border-slate-200 bg-white flex items-center gap-2">
           <input
@@ -84,25 +89,168 @@ class ChatWidget extends HTMLElement {
     this.toggleButton.addEventListener("click", () => this.openChat());
     this.closeButton.addEventListener("click", () => this.closeChat());
     this.form.addEventListener("submit", (event) => this.handleSubmit(event));
+    this.input.addEventListener("focus", () => this.adjustForKeyboard());
+    this.input.addEventListener("blur", () => {
+      window.setTimeout(() => this.adjustForKeyboard(), 120);
+    });
+    this.input.classList.remove("text-sm");
+    this.input.classList.add("text-base", "md:text-sm");
 
     this.renderMessages();
+  }
+
+  disconnectedCallback() {
+    this.unbindMobileViewportListeners();
+    if (this.isOpen && this.isMobile()) {
+      this.restoreMobileOpenStyles();
+    }
+  }
+
+  isMobile() {
+    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  }
+
+  bindMobileViewportListeners() {
+    if (this.mobileViewportHandler) return;
+
+    this.mobileViewportHandler = () => this.onViewportResize();
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener("resize", this.mobileViewportHandler);
+      window.visualViewport.addEventListener("scroll", this.mobileViewportHandler);
+    } else {
+      window.addEventListener("resize", this.mobileViewportHandler);
+    }
+  }
+
+  unbindMobileViewportListeners() {
+    if (!this.mobileViewportHandler) return;
+
+    if (window.visualViewport) {
+      window.visualViewport.removeEventListener("resize", this.mobileViewportHandler);
+      window.visualViewport.removeEventListener("scroll", this.mobileViewportHandler);
+    } else {
+      window.removeEventListener("resize", this.mobileViewportHandler);
+    }
+    this.mobileViewportHandler = null;
+  }
+
+  applyMobileOpenStyles() {
+    this.previousBodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    this.panel.style.position = "fixed";
+    this.panel.style.top = "0px";
+    this.panel.style.left = "0px";
+    this.panel.style.right = "0px";
+    this.panel.style.bottom = "0px";
+    this.panel.style.width = "100%";
+    this.panel.style.maxWidth = "100%";
+    this.panel.style.height = "100%";
+    this.panel.style.maxHeight = "100%";
+    this.panel.style.borderRadius = "0";
+    this.panel.style.zIndex = "99999";
+    this.panel.style.webkitOverflowScrolling = "touch";
+
+    this.messagesEl.style.flex = "1";
+    this.messagesEl.style.overflowY = "auto";
+    this.messagesEl.style.webkitOverflowScrolling = "touch";
+
+    this.form.style.flexShrink = "0";
+    this.form.style.paddingBottom = "calc(env(safe-area-inset-bottom) + 0.75rem)";
+  }
+
+  restoreMobileOpenStyles() {
+    document.body.style.overflow = this.previousBodyOverflow;
+    this.panel.style.position = "";
+    this.panel.style.top = "";
+    this.panel.style.left = "";
+    this.panel.style.right = "";
+    this.panel.style.bottom = "";
+    this.panel.style.width = "";
+    this.panel.style.maxWidth = "";
+    this.panel.style.height = "";
+    this.panel.style.maxHeight = "";
+    this.panel.style.borderRadius = "";
+    this.panel.style.zIndex = "";
+    this.panel.style.webkitOverflowScrolling = "";
+    this.messagesEl.style.flex = "";
+    this.messagesEl.style.overflowY = "";
+    this.messagesEl.style.webkitOverflowScrolling = "";
+    this.form.style.flexShrink = "";
+    this.form.style.paddingBottom = "";
+  }
+
+  onViewportResize() {
+    if (!this.isMobile() || !this.isOpen) return;
+
+    const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    const viewportOffsetTop = window.visualViewport ? window.visualViewport.offsetTop : 0;
+    this.panel.style.height = `${viewportHeight}px`;
+    this.panel.style.maxHeight = `${viewportHeight}px`;
+    this.panel.style.top = `${viewportOffsetTop}px`;
+
+    this.scrollToBottom();
   }
 
   openChat() {
     this.isOpen = true;
     this.panel.classList.remove("hidden");
     this.toggleButton.classList.add("hidden");
+    if (this.isMobile()) {
+      this.applyMobileOpenStyles();
+      this.bindMobileViewportListeners();
+      this.onViewportResize();
+    }
     this.input.focus();
+    this.adjustForKeyboard();
   }
 
   closeChat() {
     this.isOpen = false;
+    if (this.isMobile()) {
+      this.unbindMobileViewportListeners();
+      this.restoreMobileOpenStyles();
+    }
     this.panel.classList.add("hidden");
     this.toggleButton.classList.remove("hidden");
+    this.restorePanelHeight();
   }
 
   scrollToBottom() {
     this.messagesEl.scrollTop = this.messagesEl.scrollHeight;
+  }
+
+  getViewportHeight() {
+    return window.visualViewport?.height || window.innerHeight;
+  }
+
+  isKeyboardActive(viewportHeight) {
+    const screenHeight = window.screen?.height || window.innerHeight;
+    const isMobileViewport = window.matchMedia("(max-width: 767px)").matches;
+    return isMobileViewport && screenHeight - viewportHeight > 120;
+  }
+
+  restorePanelHeight() {
+    this.panel.style.height = this.defaultPanelHeight;
+    this.panel.style.maxHeight = this.defaultPanelMaxHeight;
+  }
+
+  adjustForKeyboard(viewportHeight = this.getViewportHeight()) {
+    if (!this.panel) return;
+    if (this.isMobile() && this.isOpen) {
+      this.onViewportResize();
+      return;
+    }
+
+    if (this.isKeyboardActive(viewportHeight)) {
+      const dynamicHeight = Math.max(260, Math.floor(viewportHeight - this.keyboardOffset));
+      this.panel.style.height = `${dynamicHeight}px`;
+      this.panel.style.maxHeight = `${dynamicHeight}px`;
+    } else {
+      this.restorePanelHeight();
+    }
+
+    window.requestAnimationFrame(() => this.scrollToBottom());
   }
 
   renderMessages() {
