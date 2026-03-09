@@ -24,43 +24,43 @@ const DETAILED_SERVICES = [
     title: "Dental Checkup",
     description:
       "Comprehensive evaluation to detect issues early and create a treatment plan tailored to your smile.",
-    image: "public/assets/images/services/Dental-Checkup.png",
+    image: "/assets/images/services/Dental-Checkup.png",
   },
   {
     title: "Oral Hygiene",
     description:
       "Professional cleaning and preventive care to keep your gums healthy and your teeth free from plaque buildup.",
-    image: "public/assets/images/services/Oral-Hygiene.png",
+    image: "/assets/images/services/Oral-Hygiene.png",
   },
   {
     title: "Teeth Whitening",
     description:
       "Safe cosmetic treatment that brightens enamel and helps restore a natural, confident-looking smile.",
-    image: "public/assets/images/services/Teeth-Whitening.jpeg",
+    image: "/assets/images/services/Teeth-Whitening.jpeg",
   },
   {
     title: "Orthodontics",
     description:
       "Alignment treatments designed to improve bite, function, and aesthetics for long-term oral health.",
-    image: "public/assets/images/services/Orthodontics.png",
+    image: "/assets/images/services/Orthodontics.png",
   },
   {
     title: "Root Canal Treatment",
     description:
       "Endodontic care that removes infection, relieves pain, and preserves your natural tooth whenever possible.",
-    image: "public/assets/images/services/Root-Canal-Treatment.png",
+    image: "/assets/images/services/Root-Canal-Treatment.png",
   },
   {
     title: "Dental Implants",
     description:
       "Durable tooth replacement solution that restores chewing function and supports your facial structure.",
-    image: "public/assets/images/services/Dental-Implants.png",
+    image: "/assets/images/services/Dental-Implants.png",
   },
   {
     title: "Oral Surgery",
     description:
       "Minor and advanced surgical procedures performed with modern protocols for comfort and recovery.",
-    image: "public/assets/images/services/Oral-Surgery.png",
+    image: "/assets/images/services/Oral-Surgery.png",
   },
 ];
 
