@@ -24,43 +24,43 @@ const DETAILED_SERVICES = [
     title: "Dental Checkup",
     description:
       "Comprehensive evaluation to detect issues early and create a treatment plan tailored to your smile.",
-    image: "/assets/services/dental-checkup.jpg",
+    image: "public/assets/images/services/Dental-Checkup.png",
   },
   {
     title: "Oral Hygiene",
     description:
       "Professional cleaning and preventive care to keep your gums healthy and your teeth free from plaque buildup.",
-    image: "/assets/services/oral-hygiene.jpg",
+    image: "public/assets/images/services/Oral-Hygiene.png",
   },
   {
     title: "Teeth Whitening",
     description:
       "Safe cosmetic treatment that brightens enamel and helps restore a natural, confident-looking smile.",
-    image: "/assets/services/teeth-whitening.jpg",
+    image: "public/assets/images/services/Teeth-Whitening.jpeg",
   },
   {
     title: "Orthodontics",
     description:
       "Alignment treatments designed to improve bite, function, and aesthetics for long-term oral health.",
-    image: "/assets/services/orthodontics.jpg",
+    image: "public/assets/images/services/Orthodontics.png",
   },
   {
     title: "Root Canal Treatment",
     description:
       "Endodontic care that removes infection, relieves pain, and preserves your natural tooth whenever possible.",
-    image: "/assets/services/root-canal-treatment.jpg",
+    image: "public/assets/images/services/Root-Canal-Treatment.png",
   },
   {
     title: "Dental Implants",
     description:
       "Durable tooth replacement solution that restores chewing function and supports your facial structure.",
-    image: "/assets/services/dental-implants.jpg",
+    image: "public/assets/images/services/Dental-Implants.png",
   },
   {
     title: "Oral Surgery",
     description:
       "Minor and advanced surgical procedures performed with modern protocols for comfort and recovery.",
-    image: "/assets/services/oral-surgery.jpg",
+    image: "public/assets/images/services/Oral-Surgery.png",
   },
 ];
 
