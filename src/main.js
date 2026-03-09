@@ -7,6 +7,7 @@ import "./components/layout/footer.js";
 
 // UI
 import "./components/ui/whatsappButton.js";
+import "./components/ui/chat-widget.js";
 import "./components/sections/hero.js";
 
 // Home page
