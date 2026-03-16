@@ -14,10 +14,10 @@ class AppFooter extends HTMLElement {
              </a>
           </div>
           <p class="text-sm text-gray-600 mb-2">
-            <span class="font-semibold text-[#3B68FF]">P:</span> (907) 563–6683
+            <span class="font-semibold text-[#3B68FF]">P:</span> (+57) 323 205 0782
           </p>
           <p class="text-sm text-gray-600">
-            <span class="font-semibold text-[#3B68FF]">E:</span> dentalbluesoledad@gmail.com
+            <span class="font-semibold text-[#3B68FF]">E:</span> info@dentalbluesoledad.com
           </p>
         </div>
 
