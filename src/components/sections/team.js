@@ -8,26 +8,36 @@ class TeamSection extends HTMLElement {
         name: "Dr. Angelica Cervantes",
         role: "Lead Dentist",
         img: "/assets/images/team/dental_blue_staff1.jpeg",
+        width: 1067,
+        height: 1600,
       },
       {
         name: "Mariana",
         role: "Dental Hygienist",
         img: "/assets/images/team/dental_blue_staff2.jpg",
+        width: 1200,
+        height: 1600,
       },
       {
         name: "Dr. Nicola Lester",
         role: "Dental Surgeon",
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        width: 3500,
+        height: 2333,
       },
       {
         name: "Dr. Daniel Foster",
         role: "Orthodontist",
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        width: 3500,
+        height: 2333,
       },
       {
         name: "Dr. Emma Hayes",
         role: "Pediatric Dentist",
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        width: 3500,
+        height: 2333,
       },
     ];
 
@@ -63,6 +73,27 @@ class TeamSection extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       ${headStyles}
+      <style>
+        .team-member-card {
+          overflow: hidden;
+        }
+
+        .team-photo-frame {
+          width: 12rem;
+          height: 12rem;
+          overflow: hidden;
+          border-radius: 1rem;
+          margin-bottom: 1rem;
+          flex-shrink: 0;
+        }
+
+        .team-photo-frame img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+      </style>
       <section id="team" class="py-16 bg-blue-500 text-white flex flex-col items-center">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
           Professional and Skilled Dentist Team
@@ -75,8 +106,10 @@ class TeamSection extends HTMLElement {
                 .map(
                   (m) => `
                 <div class="w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 flex justify-center px-2">
-                  <div class="bg-white rounded-3xl p-6 shadow-lg text-gray-900 w-full flex flex-col items-center hover:scale-105 transition">
-                    <img src="${m.img}" alt="${m.name}" class="w-48 h-48 object-cover rounded-2xl mb-4" />
+                  <div class="team-member-card bg-white rounded-3xl p-6 shadow-lg text-gray-900 w-full flex flex-col items-center hover:scale-105 transition">
+                    <div class="team-photo-frame">
+                      <img src="${m.img}" alt="${m.name}" width="${m.width}" height="${m.height}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" />
+                    </div>
                     <h3 class="text-lg font-semibold">${m.name}</h3>
                     <p class="text-sm text-gray-600">${m.role}</p>
                   </div>
