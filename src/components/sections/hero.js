@@ -24,7 +24,7 @@ class HeroSection extends HTMLElement {
         <div class="relative max-w-7xl mx-auto px-6 lg:px-8 grid lg:grid-cols-2 lg:gap-16 lg:items-start pt-8">
           <div class="relative h-full">
             <h1 class="text-5xl sm:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
-              Welcome to <span class="text-blue-600">Smile Bright</span> Dental Care
+              Welcome to <span class="text-blue-600">Dental</span> Blue
             </h1>
             <p class="mt-4 text-lg text-gray-600 max-w-xl">
               Our experienced dental team offers a blend of extensive knowledge and personalized professional care tailored to your specific needs.
