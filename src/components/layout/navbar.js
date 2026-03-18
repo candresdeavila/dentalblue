@@ -1,6 +1,18 @@
 export function initNavbar({ renderPage, renderHomePage, renderAboutUs }) {
   const btn = document.querySelector("#menu-btn");
   const menu = document.querySelector("#menu");
+
+  const navigateWithTransition = (update) => {
+    if (typeof document.startViewTransition === "function") {
+      document.startViewTransition(() => {
+        update();
+      });
+      return;
+    }
+
+    update();
+  };
+
   const scrollToSection = (id) => {
     const target = document.getElementById(id);
     if (!target) return false;
@@ -26,7 +38,9 @@ export function initNavbar({ renderPage, renderHomePage, renderAboutUs }) {
     if (sectionId) {
       if (scrollToSection(sectionId)) return;
 
-      renderPage(renderHomePage);
+      navigateWithTransition(() => {
+        renderPage(renderHomePage);
+      });
       requestAnimationFrame(() => {
         scrollToSection(sectionId);
       });
@@ -36,11 +50,15 @@ export function initNavbar({ renderPage, renderHomePage, renderAboutUs }) {
     const page = link.dataset.link;
 
     if (page === "home") {
-      renderPage(renderHomePage);
+      navigateWithTransition(() => {
+        renderPage(renderHomePage);
+      });
     }
 
     if (page === "about") {
-      renderPage(renderAboutUs);
+      navigateWithTransition(() => {
+        renderPage(renderAboutUs);
+      });
     }
   });
 }
