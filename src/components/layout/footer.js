@@ -1,4 +1,9 @@
 class AppFooter extends HTMLElement {
+  constructor() {
+    super();
+    this.handleBlogClick = this.handleBlogClick.bind(this);
+  }
+
   connectedCallback() {
     this.innerHTML = `
     <footer class="bg-white text-gray-700 pt-16 pb-8">
@@ -8,7 +13,7 @@ class AppFooter extends HTMLElement {
         <div>
           <div class="flex items-center mb-4">
             <!-- Logo -->
-             <a href="#" class="flex items-center space-x-2">
+             <a href="/" data-link="home" class="flex items-center space-x-2">
               <img src="/assets/icons/logo_transparente.png" alt="Dental Blue Logo" class="h-10 w-10">
               <span class="font-bold text-xl text-gray-900">Dental Blue</span>
              </a>
@@ -25,11 +30,12 @@ class AppFooter extends HTMLElement {
         <div>
           <h4 class="text-lg font-semibold text-gray-900 mb-4">Dental Blue Clinic</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="#" class="hover:text-[#3B68FF]">About Us</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Our Services</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Team</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Blog</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Contact Us</a></li>
+            <li><a href="/about" data-link="about" class="hover:text-[#3B68FF]">About Us</a></li>
+            <li><a href="#services" data-section="services" class="hover:text-[#3B68FF]">Our Services</a></li>
+            <li><a href="#team" data-section="team" class="hover:text-[#3B68FF]">Team</a></li>
+            <li><a href="#blog" data-section="blog" class="hover:text-[#3B68FF]">Blog</a></li>
+            <li><a href="https://wa.me/573232050782?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue" class="hover:text-[#3B68FF]" target="_blank"
+        rel="noopener noreferrer">Contact Us</a></li>
           </ul>
         </div>
 
@@ -66,7 +72,7 @@ class AppFooter extends HTMLElement {
 
           <!-- Redes sociales -->
           <div class="flex space-x-4">
-           <!--<a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
+           <!-- <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
               <i class="fab fa-facebook-f"></i>
             </a>-->
             <a href="https://www.tiktok.com/@dentalblue_?_r=1&_t=ZS-94kGNRqsJyz" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
@@ -86,6 +92,38 @@ class AppFooter extends HTMLElement {
       </div>
     </footer>
   `;
+
+    this.blogLinks = this.querySelectorAll('a[data-section="blog"]');
+    this.blogLinks.forEach((link) => {
+      link.addEventListener("click", this.handleBlogClick);
+    });
+  }
+
+  disconnectedCallback() {
+    if (!this.blogLinks) return;
+
+    this.blogLinks.forEach((link) => {
+      link.removeEventListener("click", this.handleBlogClick);
+    });
+  }
+
+  handleBlogClick(event) {
+    const pathname = window.location.pathname;
+    const isHomePath = pathname === "/" || pathname === "/index.html";
+    const isAboutView = Boolean(
+      document.querySelector('hero-section[variant="about"]'),
+    );
+    const blogSection = document.getElementById("blog");
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (isHomePath && !isAboutView && blogSection) {
+      blogSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    window.location.href = "/#blog";
   }
 }
 

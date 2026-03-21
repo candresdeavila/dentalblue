@@ -21,7 +21,7 @@ export function createConfidenceSection() {
           Achieve a Confident Smile <br>With Us
         </h2>
         <p class="text-gray-600 mb-6 leading-relaxed">
-          At Smile Bright, we’re dedicated to helping you achieve a healthy, radiant smile. 
+          At Dental Blue, we’re dedicated to helping you achieve a healthy, radiant smile. 
           Our skilled team provides personalized, gentle care using the latest technology 
           in a welcoming environment. Your smile is our priority. Trust us to care for your dental health.
         </p>

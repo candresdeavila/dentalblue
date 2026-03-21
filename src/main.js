@@ -52,6 +52,22 @@ function renderHomePage() {
   return fragment;
 }
 
+function handleHashNavigation() {
+  if (window.location.hash !== "#blog") return;
+
+  const isAboutView = Boolean(document.querySelector('hero-section[variant="about"]'));
+  if (isAboutView || !document.getElementById("blog")) {
+    renderPage(renderHomePage);
+  }
+
+  requestAnimationFrame(() => {
+    document.getElementById("blog")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  });
+}
+
 /* ===============================
    APP INIT
 ================================ */
@@ -69,6 +85,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Initial page
   renderPage(renderHomePage);
+  handleHashNavigation();
+
+  window.addEventListener("hashchange", handleHashNavigation);
 
   // Footer (global)
   document.body.appendChild(document.createElement("app-footer"));

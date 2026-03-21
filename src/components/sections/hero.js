@@ -15,7 +15,8 @@ class HeroSection extends HTMLElement {
 
   render() {
     const variant = this.getAttribute("variant") || "home";
-    this.innerHTML = variant === "about" ? this.renderAbout() : this.renderHome();
+    this.innerHTML =
+      variant === "about" ? this.renderAbout() : this.renderHome();
   }
 
   renderHome() {
@@ -107,10 +108,9 @@ class HeroSection extends HTMLElement {
               </div>
               <div class="flex justify-center lg:justify-end relative">
                 <div class="w-80 lg:w-[520px] img-card img-card--large h-[500px] relative">
-                  <img src="/assets/images/about/dental-clinic-about.png" alt="Dental Blue Modern Clinic" class="object-cover">
-                  <div class="absolute -bottom-6 -right-6 bg-blue-600 text-white rounded-2xl p-4 shadow-xl z-10">
-                    <div class="text-3xl font-bold">12+</div>
-                    <div class="text-sm opacity-90">Years of Excellence</div>
+                  <img src="/assets/images/about/dental-clinic-interior.png" alt="Dental Blue Modern Clinic" class="object-cover">
+                  <div class="absolute bottom-6 right-6 z-10">
+                    <div class="badge">8+ Years Experience</div>
                   </div>
                 </div>
               </div>
