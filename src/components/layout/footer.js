@@ -66,9 +66,9 @@ class AppFooter extends HTMLElement {
 
           <!-- Redes sociales -->
           <div class="flex space-x-4">
-            <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
+           <!-- <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
               <i class="fab fa-facebook-f"></i>
-            </a>
+            </a>-->
             <a href="https://www.tiktok.com/@dentalblue_?_r=1&_t=ZS-94kGNRqsJyz" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
               <img src="/assets/logos/tik-tok.png" alt="Dental Blue TikTok Logo" class="h-10 w-10">
               <i class="fab fa-x-tiktok"></i>
