@@ -4,6 +4,7 @@ class AppHeader extends HTMLElement {
     this.menu = null;
     this.isDocumentClickBound = false;
     this.handleDocumentClick = this.handleDocumentClick.bind(this);
+    this.handleBlogClick = this.handleBlogClick.bind(this);
   }
 
   connectedCallback() {
@@ -28,7 +29,7 @@ class AppHeader extends HTMLElement {
 
       <!-- Contact button -->
       <a
-        href="https://wa.me/573012641845?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue"
+        href="https://wa.me/573232050782?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue"
         target="_blank"
         rel="noopener noreferrer"
         class="hidden md:inline-block bg-blue-600 text-white px-5 py-2 rounded-xl hover:bg-blue-700 transition"
@@ -66,6 +67,11 @@ class AppHeader extends HTMLElement {
 
     this.menuButton = this.querySelector("#menu-btn");
     this.menu = this.querySelector("#menu");
+    this.blogLinks = this.querySelectorAll('a[data-section="blog"]');
+
+    this.blogLinks.forEach((link) => {
+      link.addEventListener("click", this.handleBlogClick);
+    });
 
     if (!this.isDocumentClickBound) {
       document.addEventListener("click", this.handleDocumentClick);
@@ -74,6 +80,12 @@ class AppHeader extends HTMLElement {
   }
 
   disconnectedCallback() {
+    if (this.blogLinks) {
+      this.blogLinks.forEach((link) => {
+        link.removeEventListener("click", this.handleBlogClick);
+      });
+    }
+
     if (this.isDocumentClickBound) {
       document.removeEventListener("click", this.handleDocumentClick);
       this.isDocumentClickBound = false;
@@ -87,6 +99,25 @@ class AppHeader extends HTMLElement {
     if (isMenuOpen && !this.contains(event.target)) {
       this.menu.classList.add("hidden");
     }
+  }
+
+  handleBlogClick(event) {
+    const pathname = window.location.pathname;
+    const isHomePath = pathname === "/" || pathname === "/index.html";
+    const isAboutView = Boolean(
+      document.querySelector('hero-section[variant="about"]'),
+    );
+    const blogSection = document.getElementById("blog");
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (isHomePath && !isAboutView && blogSection) {
+      blogSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    window.location.href = "/#blog";
   }
 }
 

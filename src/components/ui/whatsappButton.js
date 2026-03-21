@@ -4,7 +4,7 @@ class WhatsAppButton extends HTMLElement {
 
     this.innerHTML = `
       <a
-        href="https://wa.me/573012641845?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue"
+        href="https://wa.me/573232050782?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue"
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat en WhatsApp con Dental Blue"
