@@ -1,27 +1,27 @@
 export function createBlogSection() {
-    const section = document.createElement("section");
-    section.id = "blog";
-    section.className = "py-20 bg-gray-50";
+  const section = document.createElement("section");
+  section.id = "blog";
+  section.className = "py-20 bg-gray-50";
 
-    section.innerHTML = `
+  section.innerHTML = `
     <!-- 1️⃣ Sub-sección: Estadísticas / Logros -->
     <div class="container mx-auto text-center mb-20">
       <h2 class="text-3xl font-bold mb-10">The Reasons Smile Bright is Unbeatable</h2>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
-            <p class="text-4xl font-bold text-blue-600">25+</p>
+            <p class="text-4xl font-bold text-blue-600">20+</p>
             <p class="text-gray-700 text-sm">Total Branches</p>
         </div>
         <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
-          <p class="text-4xl font-bold text-blue-600">12+</p>
+          <p class="text-4xl font-bold text-blue-600">8+</p>
           <p class="text-gray-700 text-sm">Years Experience</p>
         </div>
         <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
-          <p class="text-4xl font-bold text-blue-600">16k+</p>
+          <p class="text-4xl font-bold text-blue-600">5k+</p>
           <p class="text-gray-700 text-sm">Smiles Restored</p>
         </div>
         <div class="flex flex-col items-center justify-center w-40 h-40 mx-auto rounded-full bg-[#ecf2ff]">
-          <p class="text-4xl font-bold text-blue-600">86+</p>
+          <p class="text-4xl font-bold text-blue-600">10+</p>
           <p class="text-gray-700 text-sm">Skilled Dentists</p>
         </div>
     </div>
@@ -83,8 +83,10 @@ export function createBlogSection() {
     <!-- Lado derecho -->
     <div class="relative">
       <img
-        src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg"
+        src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp"
         alt="Dentist treating patient"
+        loading="lazy"
+        decoding="async"
         class="rounded-[40px] shadow-2xl w-full object-cover"
       />
     </div>
@@ -121,5 +123,5 @@ export function createBlogSection() {
     </div>
   `;
 
-    return section;
+  return section;
 }
