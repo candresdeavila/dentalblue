@@ -14,7 +14,7 @@ class AppFooter extends HTMLElement {
           <div class="flex items-center mb-4">
             <!-- Logo -->
              <a href="/" data-link="home" class="flex items-center space-x-2">
-              <img src="/assets/icons/logo_transparente.png" alt="Dental Blue Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/icons/logo_transparente.webp" alt="Dental Blue Logo" loading="lazy" decoding="async" class="h-10 w-10">
               <span class="font-bold text-xl text-gray-900">Dental Blue</span>
              </a>
           </div>
@@ -71,20 +71,20 @@ class AppFooter extends HTMLElement {
           </p>
 
           <!-- Redes sociales -->
-          <div class="flex space-x-4">
+          <div class="flex space-x-4 md:mr-20 lg:mr-0">
            <!-- <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
               <i class="fab fa-facebook-f"></i>
             </a>-->
             <a href="https://www.tiktok.com/@dentalblue_?_r=1&_t=ZS-94kGNRqsJyz" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <img src="/assets/logos/tik-tok.png" alt="Dental Blue TikTok Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/logos/tik-tok.webp" alt="Dental Blue TikTok Logo" loading="lazy" decoding="async" class="h-10 w-10">
               <i class="fab fa-x-tiktok"></i>
             </a>
             <a href="https://www.instagram.com/dra.angelicacervantes?igsh=MTZscHRpMWJiYWlz" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <img src="/assets/logos/instagram.png" alt="Dental Blue Instagram Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/logos/instagram.webp" alt="Dental Blue Instagram Logo" loading="lazy" decoding="async" class="h-10 w-10">
               <i class="fab fa-instagram"></i>
             </a>
             <a href="https://www.linkedin.com/company/dental-blue-col" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <img src="/assets/logos/linkedin.png" alt="Dental Blue LinkedIn Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/logos/linkedin.webp" alt="Dental Blue LinkedIn Logo" loading="lazy" decoding="async" class="h-10 w-10">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>

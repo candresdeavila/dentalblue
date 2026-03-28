@@ -5,12 +5,12 @@ class TeamSection extends HTMLElement {
       {
         name: "Dr. Angelica Cervantes",
         role: "Lead Dentist",
-        img: "/assets/images/team/dental_blue_staff1.jpeg",
+        img: "/assets/images/team/dental_blue_staff1.webp",
       },
       {
         name: "Mariana",
         role: "Dental Hygienist",
-        img: "/assets/images/team/dental_blue_staff2.jpg",
+        img: "/assets/images/team/dental_blue_staff2.webp",
       },
       {
         name: "Dr. Nicola Lester",

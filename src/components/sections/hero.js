@@ -108,7 +108,7 @@ class HeroSection extends HTMLElement {
               </div>
               <div class="flex justify-center lg:justify-end relative">
                 <div class="w-80 lg:w-[520px] img-card img-card--large h-[500px] relative">
-                  <img src="/assets/images/about/dental-clinic-interior.png" alt="Dental Blue Modern Clinic" class="object-cover">
+                  <img src="/assets/images/about/dental-clinic-interior.webp" alt="Dental Blue Modern Clinic" class="object-cover">
                   <div class="absolute bottom-6 right-6 z-10">
                     <div class="badge">8+ Years Experience</div>
                   </div>

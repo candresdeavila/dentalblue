@@ -34,11 +34,9 @@ export function createBlogSection() {
     What Makes Us Different From Others
   </h2>
 
-  <div class="grid md:grid-cols-2 gap-10 items-center">
-    <!-- Lado izquierdo -->
-    <div class="space-y-6">
-      <!-- Tarjeta 1 -->
-      <div class="bg-white bg-opacity-90 border border-blue-100 rounded-3xl p-6 shadow-sm">
+  <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-[1.15fr_0.85fr] lg:gap-10 md:items-stretch">
+    <!-- Tarjeta 1 -->
+      <div class="bg-white bg-opacity-90 border border-blue-100 rounded-3xl p-6 shadow-sm md:h-full lg:h-auto lg:order-1">
         <div class="flex items-start gap-4">
           <p class="text-blue-600 text-xl font-bold italic">01</p>
           <div>
@@ -51,8 +49,19 @@ export function createBlogSection() {
         </div>
       </div>
 
+      <!-- Imagen -->
+      <div class="relative overflow-hidden rounded-[40px] shadow-2xl order-4 md:order-none md:h-full lg:row-span-3 lg:order-2">
+        <img
+          src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp"
+          alt="Dentist treating patient"
+          loading="lazy"
+          decoding="async"
+          class="h-full w-full object-cover object-center md:min-h-[280px] lg:min-h-full lg:object-[82%_center]"
+        />
+      </div>
+
       <!-- Tarjeta 2 -->
-      <div class="bg-white bg-opacity-90 border border-blue-100 rounded-3xl p-6 shadow-sm">
+      <div class="bg-white bg-opacity-90 border border-blue-100 rounded-3xl p-6 shadow-sm md:h-full lg:h-auto lg:order-3">
         <div class="flex items-start gap-4">
           <p class="text-blue-600 text-xl font-bold italic">02</p>
           <div>
@@ -66,7 +75,7 @@ export function createBlogSection() {
       </div>
 
       <!-- Tarjeta 3 -->
-      <div class="bg-white bg-opacity-90 border border-blue-100 rounded-3xl p-6 shadow-sm">
+      <div class="bg-white bg-opacity-90 border border-blue-100 rounded-3xl p-6 shadow-sm md:h-full lg:h-auto lg:order-4">
         <div class="flex items-start gap-4">
           <p class="text-blue-600 text-xl font-bold italic">03</p>
           <div>
@@ -78,18 +87,6 @@ export function createBlogSection() {
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Lado derecho -->
-    <div class="relative">
-      <img
-        src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp"
-        alt="Dentist treating patient"
-        loading="lazy"
-        decoding="async"
-        class="rounded-[40px] shadow-2xl w-full object-cover"
-      />
-    </div>
   </div>
 </div>
 
