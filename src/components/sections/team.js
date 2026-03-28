@@ -5,27 +5,27 @@ class TeamSection extends HTMLElement {
       {
         name: "Dr. Angelica Cervantes",
         role: "Lead Dentist",
-        img: "/assets/images/team/dental_blue_staff1.jpeg",
+        img: "/assets/images/team/dental_blue_staff1.webp",
       },
       {
         name: "Mariana",
         role: "Dental Hygienist",
-        img: "/assets/images/team/dental_blue_staff2.jpg",
+        img: "/assets/images/team/dental_blue_staff2.webp",
       },
       {
         name: "Dr. Nicola Lester",
         role: "Dental Surgeon",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
       },
       {
         name: "Dr. Daniel Foster",
         role: "Orthodontist",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
       },
       {
         name: "Dr. Emma Hayes",
         role: "Pediatric Dentist",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg",
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
       },
     ];
 
@@ -116,7 +116,7 @@ class TeamSection extends HTMLElement {
                     <p class="text-sm text-gray-600">${m.role}</p>
                   </div>
                 </div>
-              `
+              `,
                 )
                 .join("")}
             </div>

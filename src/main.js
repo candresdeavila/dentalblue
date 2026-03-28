@@ -46,7 +46,7 @@ function renderHomePage() {
     createConfidenceSection(),
     teamWrapper,
     createBlogSection(),
-    renderPremiun()
+    renderPremiun(),
   );
 
   return fragment;
@@ -55,7 +55,9 @@ function renderHomePage() {
 function handleHashNavigation() {
   if (window.location.hash !== "#blog") return;
 
-  const isAboutView = Boolean(document.querySelector('hero-section[variant="about"]'));
+  const isAboutView = Boolean(
+    document.querySelector('hero-section[variant="about"]'),
+  );
   if (isAboutView || !document.getElementById("blog")) {
     renderPage(renderHomePage);
   }
@@ -75,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Header & Navbar
   document.body.insertAdjacentElement(
     "afterbegin",
-    document.createElement("app-header")
+    document.createElement("app-header"),
   );
   initNavbar({
     renderPage,

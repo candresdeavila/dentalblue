@@ -15,7 +15,7 @@ class AppHeader extends HTMLElement {
 
       <!-- Logo -->
       <a href="/" data-link="home" class="flex items-center space-x-2">
-        <img src="/assets/icons/logo_transparente.png" alt="Dental Blue Logo" class="h-10 w-10">
+        <img src="/assets/icons/logo_transparente.webp" alt="Dental Blue Logo" loading="lazy" decoding="async" class="h-10 w-10">
         <span class="font-bold text-xl text-gray-900">Dental Blue</span>
       </a>
 

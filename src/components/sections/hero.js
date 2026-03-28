@@ -42,14 +42,14 @@ class HeroSection extends HTMLElement {
 
             <div class="mt-12 w-72 relative z-10 md:hidden lg:block">
               <div class="img-card img-card--small h-72">
-                <img src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
+                <img src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
               </div>
             </div>
           </div> 
 
           <div class="flex justify-center lg:justify-end relative mt-4 h-full md:hidden lg:flex">
             <div class="w-80 lg:w-[520px] img-card img-card--large h-[600px] relative">
-              <img src="/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.jpg" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
+              <img src="/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.webp" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
               <div class="absolute bottom-6 right-6 z-10">
                 <div class="badge">8+ Years Experience</div>
               </div>
@@ -58,10 +58,10 @@ class HeroSection extends HTMLElement {
 
           <div class="hidden md:flex lg:hidden w-full items-center justify-center gap-4 mt-8">
             <div class="w-[48%] img-card img-card--small h-[280px] max-h-[280px]">
-              <img src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.jpg" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
+              <img src="/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp" alt="Paciente" class="object-cover" style="object-position: 50% 20%;">
             </div>
             <div class="w-[48%] img-card img-card--large h-[280px] max-h-[280px] relative">
-              <img src="/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.jpg" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
+              <img src="/assets/images/hero/dentista-haciendo-un-chequeo-al-paciente.webp" alt="Dentista" class="object-cover" style="object-position: 50% 30%;">
               <div class="absolute bottom-4 right-4 z-10">
                 <div class="badge">8+ Years Experience</div>
               </div>
@@ -108,7 +108,7 @@ class HeroSection extends HTMLElement {
               </div>
               <div class="flex justify-center lg:justify-end relative">
                 <div class="w-80 lg:w-[520px] img-card img-card--large h-[500px] relative">
-                  <img src="/assets/images/about/dental-clinic-interior.png" alt="Dental Blue Modern Clinic" class="object-cover">
+                  <img src="/assets/images/about/dental-clinic-interior.webp" alt="Dental Blue Modern Clinic" class="object-cover">
                   <div class="absolute bottom-6 right-6 z-10">
                     <div class="badge">8+ Years Experience</div>
                   </div>

@@ -1,8 +1,7 @@
 import { createExpandableServicesSection } from "../../components/sections/servicesExpandable.js";
 
 export function renderAboutUs() {
-
-  const section = document.createElement('section');
+  const section = document.createElement("section");
   section.className = "bg-white";
 
   section.innerHTML = `
@@ -152,19 +151,19 @@ export function renderAboutUs() {
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">25+</p>
+            <p class="text-3xl md:text-4xl font-bold text-blue-600">20+</p>
             <p class="text-gray-500 text-sm text-center">Total Branches</p>
           </div>
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">12+</p>
+            <p class="text-3xl md:text-4xl font-bold text-blue-600">8+</p>
             <p class="text-gray-500 text-sm text-center">Years Experience</p>
           </div>
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">16k+</p>
+            <p class="text-3xl md:text-4xl font-bold text-blue-600">5k+</p>
             <p class="text-gray-500 text-sm text-center">Smiles Restored</p>
           </div>
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">86+</p>
+            <p class="text-3xl md:text-4xl font-bold text-blue-600">10+</p>
             <p class="text-gray-500 text-sm text-center">Skilled Dentists</p>
           </div>
         </div>
@@ -208,7 +207,9 @@ export function renderAboutUs() {
 
   const servicesSlot = section.querySelector("#about-services-slot");
   if (servicesSlot) {
-    servicesSlot.replaceWith(createExpandableServicesSection({ variant: "about" }));
+    servicesSlot.replaceWith(
+      createExpandableServicesSection({ variant: "about" }),
+    );
   }
 
   return section;
