@@ -35,6 +35,9 @@ class TeamSection extends HTMLElement {
     this.onResize = null;
     this.onNext = null;
     this.onPrev = null;
+    this.onTouchStart = null;
+    this.onTouchEnd = null;
+    this.touchStartX = 0;
   }
 
   connectedCallback() {
@@ -59,12 +62,23 @@ class TeamSection extends HTMLElement {
       window.removeEventListener("resize", this.onResize);
     }
 
+    if (this.carousel && this.onTouchStart) {
+      this.carousel.removeEventListener("touchstart", this.onTouchStart);
+    }
+
+    if (this.carousel && this.onTouchEnd) {
+      this.carousel.removeEventListener("touchend", this.onTouchEnd);
+    }
+
     this.carousel = null;
     this.nextButton = null;
     this.prevButton = null;
     this.onNext = null;
     this.onPrev = null;
+    this.onTouchStart = null;
+    this.onTouchEnd = null;
     this.onResize = null;
+    this.touchStartX = 0;
     this.currentIndex = 0;
     this.visibleCards = 3;
   }
@@ -162,8 +176,31 @@ class TeamSection extends HTMLElement {
       this.updateCarousel();
     };
 
+    this.onTouchStart = (e) => {
+      this.touchStartX = e.touches[0].clientX;
+    };
+
+    this.onTouchEnd = (e) => {
+      const touchEndX = e.changedTouches[0].clientX;
+      const diff = this.touchStartX - touchEndX;
+
+      if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+          this.onNext();
+        } else {
+          this.onPrev();
+        }
+      }
+    };
+
     this.nextButton.addEventListener("click", this.onNext);
     this.prevButton.addEventListener("click", this.onPrev);
+    this.carousel.addEventListener("touchstart", this.onTouchStart, {
+      passive: true,
+    });
+    this.carousel.addEventListener("touchend", this.onTouchEnd, {
+      passive: true,
+    });
     window.addEventListener("resize", this.onResize);
   }
 
