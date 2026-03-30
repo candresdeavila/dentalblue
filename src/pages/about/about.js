@@ -19,17 +19,17 @@ export function renderAboutUs() {
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="space-y-6">
             <p class="text-gray-600">
-              Dental Blue was founded in 2013 by Dr. Maria Santos with a simple yet powerful
+              Dental Blue was founded in 2013 by Dr. Angelica Cervantes with a simple yet powerful
               mission: to make quality dental care accessible to everyone while creating a
               warm, welcoming environment that puts patients at ease.
             </p>
             <p class="text-gray-600">
-              What started as a single clinic has grown into a network of 25+ branches,
+              What started as a single clinic has grown into a network of 20+ branches,
               each maintaining the same commitment to excellence and personalized care
               that defined our first location.
             </p>
             <p class="text-gray-600">
-              Today, our team of 86+ skilled dentists continues to uphold the values that
+              Today, our team of 10+ skilled dentists continues to uphold the values that
               made Dental Blue a household name, combining cutting-edge technology with
               compassionate care to deliver outstanding results.
             </p>
@@ -151,7 +151,7 @@ export function renderAboutUs() {
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">20+</p>
+            <p class="text-3xl md:text-4xl font-bold text-blue-600">5+</p>
             <p class="text-gray-500 text-sm text-center">Total Branches</p>
           </div>
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
