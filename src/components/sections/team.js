@@ -36,8 +36,10 @@ class TeamSection extends HTMLElement {
     this.onNext = null;
     this.onPrev = null;
     this.onTouchStart = null;
+    this.onTouchMove = null;
     this.onTouchEnd = null;
     this.touchStartX = 0;
+    this.touchStartY = 0;
   }
 
   connectedCallback() {
@@ -66,6 +68,10 @@ class TeamSection extends HTMLElement {
       this.carousel.removeEventListener("touchstart", this.onTouchStart);
     }
 
+    if (this.carousel && this.onTouchMove) {
+      this.carousel.removeEventListener("touchmove", this.onTouchMove);
+    }
+
     if (this.carousel && this.onTouchEnd) {
       this.carousel.removeEventListener("touchend", this.onTouchEnd);
     }
@@ -76,9 +82,11 @@ class TeamSection extends HTMLElement {
     this.onNext = null;
     this.onPrev = null;
     this.onTouchStart = null;
+    this.onTouchMove = null;
     this.onTouchEnd = null;
     this.onResize = null;
     this.touchStartX = 0;
+    this.touchStartY = 0;
     this.currentIndex = 0;
     this.visibleCards = 3;
   }
@@ -178,14 +186,26 @@ class TeamSection extends HTMLElement {
 
     this.onTouchStart = (e) => {
       this.touchStartX = e.touches[0].clientX;
+      this.touchStartY = e.touches[0].clientY;
+    };
+
+    this.onTouchMove = (e) => {
+      const diffX = Math.abs(e.touches[0].clientX - this.touchStartX);
+      const diffY = Math.abs(e.touches[0].clientY - this.touchStartY);
+
+      if (diffX > diffY) {
+        e.preventDefault();
+      }
     };
 
     this.onTouchEnd = (e) => {
       const touchEndX = e.changedTouches[0].clientX;
-      const diff = this.touchStartX - touchEndX;
+      const touchEndY = e.changedTouches[0].clientY;
+      const diffX = this.touchStartX - touchEndX;
+      const diffY = Math.abs(this.touchStartY - touchEndY);
 
-      if (Math.abs(diff) > 50) {
-        if (diff > 0) {
+      if (Math.abs(diffX) > 40 && Math.abs(diffX) > diffY) {
+        if (diffX > 0) {
           this.onNext();
         } else {
           this.onPrev();
@@ -197,6 +217,9 @@ class TeamSection extends HTMLElement {
     this.prevButton.addEventListener("click", this.onPrev);
     this.carousel.addEventListener("touchstart", this.onTouchStart, {
       passive: true,
+    });
+    this.carousel.addEventListener("touchmove", this.onTouchMove, {
+      passive: false,
     });
     this.carousel.addEventListener("touchend", this.onTouchEnd, {
       passive: true,
