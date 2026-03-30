@@ -28,18 +28,8 @@ class TeamSection extends HTMLElement {
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
       },
     ];
-
-    this.totalCards = this.members.length;
-    this.currentIndex = 0;
-    this.visibleCards = 3;
-    this.onResize = null;
     this.onNext = null;
     this.onPrev = null;
-    this.onTouchStart = null;
-    this.onTouchMove = null;
-    this.onTouchEnd = null;
-    this.touchStartX = 0;
-    this.touchStartY = 0;
   }
 
   connectedCallback() {
@@ -47,8 +37,6 @@ class TeamSection extends HTMLElement {
 
     this.render();
     this.bindEvents();
-    this.visibleCards = this.getVisibleCards();
-    this.updateCarousel();
   }
 
   disconnectedCallback() {
@@ -60,35 +48,11 @@ class TeamSection extends HTMLElement {
       this.prevButton.removeEventListener("click", this.onPrev);
     }
 
-    if (this.onResize) {
-      window.removeEventListener("resize", this.onResize);
-    }
-
-    if (this.carousel && this.onTouchStart) {
-      this.carousel.removeEventListener("touchstart", this.onTouchStart);
-    }
-
-    if (this.carousel && this.onTouchMove) {
-      this.carousel.removeEventListener("touchmove", this.onTouchMove);
-    }
-
-    if (this.carousel && this.onTouchEnd) {
-      this.carousel.removeEventListener("touchend", this.onTouchEnd);
-    }
-
     this.carousel = null;
     this.nextButton = null;
     this.prevButton = null;
     this.onNext = null;
     this.onPrev = null;
-    this.onTouchStart = null;
-    this.onTouchMove = null;
-    this.onTouchEnd = null;
-    this.onResize = null;
-    this.touchStartX = 0;
-    this.touchStartY = 0;
-    this.currentIndex = 0;
-    this.visibleCards = 3;
   }
 
   render() {
@@ -117,6 +81,27 @@ class TeamSection extends HTMLElement {
           height: 100%;
           object-fit: cover;
         }
+
+        .team-section-root .carousel-container {
+          overflow-x: scroll;
+          scroll-snap-type: x mandatory;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          -ms-overflow-style: none;
+        }
+
+        .team-section-root .carousel-container::-webkit-scrollbar {
+          display: none;
+        }
+
+        .team-section-root .team-carousel {
+          display: flex;
+        }
+
+        .team-section-root .team-card {
+          scroll-snap-align: center;
+          flex-shrink: 0;
+        }
       </style>
       <section class="team-section-root py-16 bg-blue-500 text-white flex flex-col items-center">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
@@ -124,12 +109,12 @@ class TeamSection extends HTMLElement {
         </h2>
 
         <div class="relative max-w-6xl w-full px-6">
-          <div class="overflow-hidden">
-            <div class="team-carousel flex transition-transform duration-500 ease-in-out">
+          <div class="carousel-container">
+            <div class="team-carousel">
               ${this.members
                 .map(
                   (m) => `
-                <div class="w-full sm:w-1/2 lg:w-1/3 flex-shrink-0 flex justify-center px-2">
+                <div class="team-card w-full sm:w-1/2 lg:w-1/3 flex justify-center px-2">
                   <div class="team-member-card bg-white rounded-3xl p-6 shadow-lg text-gray-900 w-full flex flex-col items-center hover:scale-105 transition">
                     <div class="team-photo-frame">
                       <img src="${m.img}" alt="${m.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" />
@@ -154,88 +139,38 @@ class TeamSection extends HTMLElement {
       </section>
     `;
 
-    this.carousel = this.querySelector(".team-carousel");
+    this.carousel = this.querySelector(".carousel-container");
     this.nextButton = this.querySelector(".next-team");
     this.prevButton = this.querySelector(".prev-team");
   }
 
   bindEvents() {
-    this.onNext = () => {
-      if (this.currentIndex < this.totalCards - this.visibleCards) {
-        this.currentIndex++;
-      } else {
-        this.currentIndex = 0;
+    const getCardScrollWidth = () => {
+      const firstCard = this.carousel?.querySelector(".team-card");
+
+      if (!firstCard) {
+        return 0;
       }
-      this.updateCarousel();
+
+      const styles = window.getComputedStyle(firstCard);
+      const marginLeft = parseFloat(styles.marginLeft) || 0;
+      const marginRight = parseFloat(styles.marginRight) || 0;
+
+      return firstCard.offsetWidth + marginLeft + marginRight;
+    };
+
+    this.onNext = () => {
+      const cardWidth = getCardScrollWidth();
+      this.carousel.scrollBy({ left: cardWidth, behavior: "smooth" });
     };
 
     this.onPrev = () => {
-      if (this.currentIndex > 0) {
-        this.currentIndex--;
-      } else {
-        this.currentIndex = this.totalCards - this.visibleCards;
-      }
-      this.updateCarousel();
-    };
-
-    this.onResize = () => {
-      this.visibleCards = this.getVisibleCards();
-      this.currentIndex = 0;
-      this.updateCarousel();
-    };
-
-    this.onTouchStart = (e) => {
-      this.touchStartX = e.touches[0].clientX;
-      this.touchStartY = e.touches[0].clientY;
-    };
-
-    this.onTouchMove = (e) => {
-      const diffX = Math.abs(e.touches[0].clientX - this.touchStartX);
-      const diffY = Math.abs(e.touches[0].clientY - this.touchStartY);
-
-      if (diffX > diffY) {
-        e.preventDefault();
-      }
-    };
-
-    this.onTouchEnd = (e) => {
-      const touchEndX = e.changedTouches[0].clientX;
-      const touchEndY = e.changedTouches[0].clientY;
-      const diffX = this.touchStartX - touchEndX;
-      const diffY = Math.abs(this.touchStartY - touchEndY);
-
-      if (Math.abs(diffX) > 40 && Math.abs(diffX) > diffY) {
-        if (diffX > 0) {
-          this.onNext();
-        } else {
-          this.onPrev();
-        }
-      }
+      const cardWidth = getCardScrollWidth();
+      this.carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
     };
 
     this.nextButton.addEventListener("click", this.onNext);
     this.prevButton.addEventListener("click", this.onPrev);
-    this.carousel.addEventListener("touchstart", this.onTouchStart, {
-      passive: true,
-    });
-    this.carousel.addEventListener("touchmove", this.onTouchMove, {
-      passive: false,
-    });
-    this.carousel.addEventListener("touchend", this.onTouchEnd, {
-      passive: true,
-    });
-    window.addEventListener("resize", this.onResize);
-  }
-
-  getVisibleCards() {
-    if (window.innerWidth < 640) return 1;
-    if (window.innerWidth < 1024) return 2;
-    return 3;
-  }
-
-  updateCarousel() {
-    const offset = (this.currentIndex * 100) / this.visibleCards;
-    this.carousel.style.transform = `translateX(-${offset}%)`;
   }
 }
 
