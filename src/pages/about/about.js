@@ -19,12 +19,12 @@ export function renderAboutUs() {
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="space-y-6">
             <p class="text-gray-600">
-              Dental Blue was founded in 2013 by Dr. Angelica Cervantes with a simple yet powerful
+              Dental Blue was founded in 2017 by Dr. Angelica Cervantes with a simple yet powerful
               mission: to make quality dental care accessible to everyone while creating a
               warm, welcoming environment that puts patients at ease.
             </p>
             <p class="text-gray-600">
-              What started as a single clinic has grown into a network of 20+ branches,
+              What started as a single clinic has grown into a network of 5+ branches,
               each maintaining the same commitment to excellence and personalized care
               that defined our first location.
             </p>
@@ -38,21 +38,21 @@ export function renderAboutUs() {
           <!-- Timeline -->
           <div class="space-y-6">
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2013</div>
+              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2017</div>
               <div>
                 <h4 class="font-bold text-gray-900 mb-1">Founded</h4>
                 <p class="text-gray-500 text-sm">Dental Blue opened its first clinic with a vision to transform dental care.</p>
               </div>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2016</div>
+              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2019</div>
               <div>
                 <h4 class="font-bold text-gray-900 mb-1">Expansion</h4>
                 <p class="text-gray-500 text-sm">Opened 5 additional branches across the region.</p>
               </div>
             </div>
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2019</div>
+              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2022</div>
               <div>
                 <h4 class="font-bold text-gray-900 mb-1">Technology</h4>
                 <p class="text-gray-500 text-sm">Implemented state-of-the-art 3D imaging and digital X-rays.</p>
