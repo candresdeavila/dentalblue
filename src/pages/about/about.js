@@ -19,29 +19,17 @@ export function renderAboutUs() {
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="space-y-6">
             <p class="text-gray-600">
-<<<<<<< HEAD
               Dental Blue was founded in 2017 by Dr. Angelica Cervantes with a simple yet powerful
-=======
-              Dental Blue was founded in 2013 by Dr. Angelica Cervantes with a simple yet powerful
->>>>>>> dev
               mission: to make quality dental care accessible to everyone while creating a
               warm, welcoming environment that puts patients at ease.
             </p>
             <p class="text-gray-600">
-<<<<<<< HEAD
-              What started as a single clinic has grown into a network of 10+ branches,
-=======
-              What started as a single clinic has grown into a network of 20+ branches,
->>>>>>> dev
+              What started as a single clinic has grown into a network of 5+ branches,
               each maintaining the same commitment to excellence and personalized care
               that defined our first location.
             </p>
             <p class="text-gray-600">
-<<<<<<< HEAD
-              Today, our team of skilled dentists continues to uphold the values that
-=======
               Today, our team of 10+ skilled dentists continues to uphold the values that
->>>>>>> dev
               made Dental Blue a household name, combining cutting-edge technology with
               compassionate care to deliver outstanding results.
             </p>
