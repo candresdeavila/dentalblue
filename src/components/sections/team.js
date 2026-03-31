@@ -6,24 +6,30 @@ class TeamSection extends HTMLElement {
         name: "Dr. Angelica Cervantes",
         role: "Lead Dentist",
         img: "/assets/images/team/dental_blue_staff1.webp",
+        imageStyle:
+          "object-fit: contain; object-position: center bottom; background: white;",
       },
       {
         name: "Mariana",
         role: "Dental Hygienist",
         img: "/assets/images/team/dental_blue_staff2.webp",
+        imageStyle:
+          "object-fit: contain; object-position: center bottom; background: white;",
       },
       {
-        name: "Dr. Nicola Lester",
-        role: "Dental Surgeon",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
-      },
-      {
-        name: "Dr. Daniel Foster",
+        name: "Dr. Luis Barros",
         role: "Orthodontist",
+        img: "/assets/images/team/dental_blue_staff3.webp",
+        imageStyle:
+          "object-fit: contain; object-position: center bottom; background: white;",
+      },
+      {
+        name: "Dr. Yolanda Alonso",
+        role: "Endodontist",
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
       },
       {
-        name: "Dr. Emma Hayes",
+        name: "Dr. Joyce Barrios",
         role: "Pediatric Dentist",
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
       },
@@ -117,7 +123,7 @@ class TeamSection extends HTMLElement {
                 <div class="team-card w-full sm:w-1/2 lg:w-1/3 flex justify-center px-2">
                   <div class="team-member-card bg-white rounded-3xl p-6 shadow-lg text-gray-900 w-full flex flex-col items-center hover:scale-105 transition">
                     <div class="team-photo-frame">
-                      <img src="${m.img}" alt="${m.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" />
+                      <img src="${m.img}" alt="${m.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" style="${m.imageStyle || ""}" />
                     </div>
                     <h3 class="text-lg font-semibold">${m.name}</h3>
                     <p class="text-sm text-gray-600">${m.role}</p>

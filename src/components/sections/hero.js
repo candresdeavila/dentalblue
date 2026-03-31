@@ -68,7 +68,7 @@ class HeroSection extends HTMLElement {
             </div>
           </div>
         </div>
-
+      <!--
         <div class="mt-24 max-w-5xl mx-auto px-6">
           <div class="flex justify-center items-center flex-wrap grayscale opacity-60 gap-x-30">
             <img src="/assets/logos/colgate-logo-1.svg" alt="Colgate" class="h-14 w-14">
@@ -77,6 +77,7 @@ class HeroSection extends HTMLElement {
             <img src="/assets/logos/Logo-Adental.png" alt="Oral-B" class="h-6 w-14">
           </div>
         </div>
+      -->
       </section>
     `;
   }
