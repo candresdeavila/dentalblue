@@ -54,7 +54,7 @@ class AppHeader extends HTMLElement {
     <a href="#team" data-section="team" class="block hover:text-blue-500">Team</a>
     <a href="#blog" data-section="blog" class="block hover:text-blue-500">Blog</a>
     <a
-      href="https://wa.me/573012641845?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue"
+      href="https://wa.me/573232050782?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue"
       target="_blank"
       rel="noopener noreferrer"
       class="block bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
