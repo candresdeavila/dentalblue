@@ -1,48 +1,17 @@
+import { t } from "../../i18n/i18n.js";
+
 class TeamSection extends HTMLElement {
   constructor() {
     super();
-    this.members = [
-      {
-        name: "Dr. Angelica Cervantes",
-        role: "Lead Dentist",
-        img: "/assets/images/team/dental_blue_staff1.webp",
-        imageStyle:
-          "object-fit: contain; object-position: center bottom; background: white;",
-      },
-      {
-        name: "Mariana",
-        role: "Dental Hygienist",
-        img: "/assets/images/team/dental_blue_staff2.webp",
-        imageStyle:
-          "object-fit: contain; object-position: center bottom; background: white;",
-      },
-      {
-        name: "Dr. Luis Barros",
-        role: "Orthodontist",
-        img: "/assets/images/team/dental_blue_staff3.webp",
-        imageStyle:
-          "object-fit: contain; object-position: center bottom; background: white;",
-      },
-      {
-        name: "Dr. Yolanda Alonso",
-        role: "Endodontist",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
-      },
-      {
-        name: "Dr. Joyce Barrios",
-        role: "Pediatric Dentist",
-        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
-      },
-    ];
     this.onNext = null;
     this.onPrev = null;
+    this.handleLangChange = this.handleLangChange.bind(this);
   }
 
   connectedCallback() {
-    if (this.childElementCount > 0) return;
-
     this.render();
     this.bindEvents();
+    window.addEventListener("langchange", this.handleLangChange);
   }
 
   disconnectedCallback() {
@@ -54,6 +23,7 @@ class TeamSection extends HTMLElement {
       this.prevButton.removeEventListener("click", this.onPrev);
     }
 
+    window.removeEventListener("langchange", this.handleLangChange);
     this.carousel = null;
     this.nextButton = null;
     this.prevButton = null;
@@ -61,7 +31,58 @@ class TeamSection extends HTMLElement {
     this.onPrev = null;
   }
 
+  getMembers() {
+    return [
+      {
+        name: "Dr. Angelica Cervantes",
+        role: t("team.roles.leadDentist"),
+        img: "/assets/images/team/dental_blue_staff1.webp",
+        imageStyle:
+          "object-fit: contain; object-position: center bottom; background: white;",
+      },
+      {
+        name: "Mariana",
+        role: t("team.roles.dentalHygienist"),
+        img: "/assets/images/team/dental_blue_staff2.webp",
+        imageStyle:
+          "object-fit: contain; object-position: center bottom; background: white;",
+      },
+      {
+        name: "Dr. Luis Barros",
+        role: t("team.roles.orthodontist"),
+        img: "/assets/images/team/dental_blue_staff3.webp",
+        imageStyle:
+          "object-fit: contain; object-position: center bottom; background: white;",
+      },
+      {
+        name: "Dr. Yolanda Alonso",
+        role: t("team.roles.endodontist"),
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
+      },
+      {
+        name: "Dr. Joyce Barrios",
+        role: t("team.roles.pediatricDentist"),
+        img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
+      },
+    ];
+  }
+
+  handleLangChange() {
+    this.render();
+    this.bindEvents();
+  }
+
   render() {
+    if (this.nextButton && this.onNext) {
+      this.nextButton.removeEventListener("click", this.onNext);
+    }
+
+    if (this.prevButton && this.onPrev) {
+      this.prevButton.removeEventListener("click", this.onPrev);
+    }
+
+    const members = this.getMembers();
+
     this.innerHTML = `
       <style>
         team-section {
@@ -111,22 +132,22 @@ class TeamSection extends HTMLElement {
       </style>
       <section class="team-section-root py-16 bg-blue-500 text-white flex flex-col items-center">
         <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">
-          Professional and Skilled Dentist Team
+          ${t("team.title")}
         </h2>
 
         <div class="relative max-w-6xl w-full px-6">
           <div class="carousel-container">
             <div class="team-carousel">
-              ${this.members
+              ${members
                 .map(
-                  (m) => `
+                  (member) => `
                 <div class="team-card w-full sm:w-1/2 lg:w-1/3 flex justify-center px-2">
                   <div class="team-member-card bg-white rounded-3xl p-6 shadow-lg text-gray-900 w-full flex flex-col items-center hover:scale-105 transition">
                     <div class="team-photo-frame">
-                      <img src="${m.img}" alt="${m.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" style="${m.imageStyle || ""}" />
+                      <img src="${member.img}" alt="${member.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" style="${member.imageStyle || ""}" />
                     </div>
-                    <h3 class="text-lg font-semibold">${m.name}</h3>
-                    <p class="text-sm text-gray-600">${m.role}</p>
+                    <h3 class="text-lg font-semibold">${member.name}</h3>
+                    <p class="text-sm text-gray-600">${member.role}</p>
                   </div>
                 </div>
               `,
@@ -135,10 +156,10 @@ class TeamSection extends HTMLElement {
             </div>
           </div>
 
-          <button class="prev-team absolute left-0 top-1/2 -translate-y-1/2 bg-blue-400 hover:bg-blue-600 text-white rounded-full p-3 shadow-md transition">
+          <button aria-label="${t("team.prevAria")}" class="prev-team absolute left-0 top-1/2 -translate-y-1/2 bg-blue-400 hover:bg-blue-600 text-white rounded-full p-3 shadow-md transition">
             &#10094;
           </button>
-          <button class="next-team absolute right-0 top-1/2 -translate-y-1/2 bg-blue-400 hover:bg-blue-600 text-white rounded-full p-3 shadow-md transition">
+          <button aria-label="${t("team.nextAria")}" class="next-team absolute right-0 top-1/2 -translate-y-1/2 bg-blue-400 hover:bg-blue-600 text-white rounded-full p-3 shadow-md transition">
             &#10095;
           </button>
         </div>

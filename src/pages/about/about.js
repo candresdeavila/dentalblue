@@ -1,76 +1,49 @@
 import { createExpandableServicesSection } from "../../components/sections/servicesExpandable.js";
+import { getLang, t } from "../../i18n/i18n.js";
 
 export function renderAboutUs() {
+  const timeline = t("aboutPage.timeline");
+  const values = t("aboutPage.values");
+  const stats = t("aboutPage.stats");
   const section = document.createElement("section");
   section.className = "bg-white";
+  section.dataset.lang = getLang();
 
   section.innerHTML = `
-    <!-- Our Story Section -->
     <div class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Our Story</h2>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">${t("aboutPage.storyTitle")}</h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            From humble beginnings to becoming a trusted name in dental care,
-            our journey has been defined by passion and dedication.
+            ${t("aboutPage.storyIntro")}
           </p>
         </div>
 
         <div class="grid md:grid-cols-2 gap-12 items-center">
           <div class="space-y-6">
-            <p class="text-gray-600">
-              Dental Blue was founded in 2017 by Dr. Angelica Cervantes with a simple yet powerful
-              mission: to make quality dental care accessible to everyone while creating a
-              warm, welcoming environment that puts patients at ease.
-            </p>
-            <p class="text-gray-600">
-              What started as a single clinic has grown into a network of 5+ branches,
-              each maintaining the same commitment to excellence and personalized care
-              that defined our first location.
-            </p>
-            <p class="text-gray-600">
-              Today, our team of 10+ skilled dentists continues to uphold the values that
-              made Dental Blue a household name, combining cutting-edge technology with
-              compassionate care to deliver outstanding results.
-            </p>
+            <p class="text-gray-600">${t("aboutPage.storyParagraph1")}</p>
+            <p class="text-gray-600">${t("aboutPage.storyParagraph2")}</p>
+            <p class="text-gray-600">${t("aboutPage.storyParagraph3")}</p>
           </div>
 
-          <!-- Timeline -->
           <div class="space-y-6">
+            ${timeline
+              .map(
+                (item) => `
             <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2017</div>
+              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">${item.year}</div>
               <div>
-                <h4 class="font-bold text-gray-900 mb-1">Founded</h4>
-                <p class="text-gray-500 text-sm">Dental Blue opened its first clinic with a vision to transform dental care.</p>
+                <h4 class="font-bold text-gray-900 mb-1">${item.title}</h4>
+                <p class="text-gray-500 text-sm">${item.description}</p>
               </div>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2019</div>
-              <div>
-                <h4 class="font-bold text-gray-900 mb-1">Expansion</h4>
-                <p class="text-gray-500 text-sm">Opened 5 additional branches across the region.</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2022</div>
-              <div>
-                <h4 class="font-bold text-gray-900 mb-1">Technology</h4>
-                <p class="text-gray-500 text-sm">Implemented state-of-the-art 3D imaging and digital X-rays.</p>
-              </div>
-            </div>
-            <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex gap-4 hover:shadow-md transition-shadow">
-              <div class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm shrink-0">2023</div>
-              <div>
-                <h4 class="font-bold text-gray-900 mb-1">Recognition</h4>
-                <p class="text-gray-500 text-sm">Awarded 'Best Dental Practice' for exceptional patient care.</p>
-              </div>
-            </div>
+            </div>`,
+              )
+              .join("")}
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Mission & Vision -->
     <div class="py-20">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="bg-blue-600 text-white rounded-3xl p-10 md:p-16">
@@ -78,21 +51,19 @@ export function renderAboutUs() {
             <div>
               <div class="flex items-center gap-3 mb-4">
                 <span class="text-2xl">🎯</span>
-                <h3 class="text-2xl font-bold">Our Mission</h3>
+                <h3 class="text-2xl font-bold">${t("aboutPage.missionTitle")}</h3>
               </div>
               <p class="text-white/90 leading-relaxed">
-                To deliver exceptional dental care that transforms smiles and improves lives,
-                making every patient feel valued, comfortable, and confident in their dental health journey.
+                ${t("aboutPage.missionBody")}
               </p>
             </div>
             <div>
               <div class="flex items-center gap-3 mb-4">
                 <span class="text-2xl">✨</span>
-                <h3 class="text-2xl font-bold">Our Vision</h3>
+                <h3 class="text-2xl font-bold">${t("aboutPage.visionTitle")}</h3>
               </div>
               <p class="text-white/90 leading-relaxed">
-                To be the most trusted dental care provider, setting the standard for excellence,
-                innovation, and patient satisfaction in every community we serve.
+                ${t("aboutPage.visionBody")}
               </p>
             </div>
           </div>
@@ -100,100 +71,72 @@ export function renderAboutUs() {
       </div>
     </div>
 
-    <!-- Core Values -->
     <div class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">Our Core Values</h2>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">${t("aboutPage.valuesTitle")}</h2>
           <p class="text-gray-600 max-w-2xl mx-auto">
-            These principles guide everything we do at Dental Blue
+            ${t("aboutPage.valuesIntro")}
           </p>
         </div>
 
         <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          ${values
+            .map(
+              (value) => `
           <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
             <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl">❤️</span>
+              <span class="text-2xl">${value.icon}</span>
             </div>
-            <h4 class="font-bold text-gray-900 text-lg mb-3">Compassionate Care</h4>
-            <p class="text-gray-500 text-sm">We treat every patient with empathy and understanding, ensuring a comfortable experience.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
-            <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl">🛡️</span>
-            </div>
-            <h4 class="font-bold text-gray-900 text-lg mb-3">Excellence & Safety</h4>
-            <p class="text-gray-500 text-sm">Our commitment to the highest standards of dental care and patient safety is unwavering.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
-            <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl">👥</span>
-            </div>
-            <h4 class="font-bold text-gray-900 text-lg mb-3">Patient-Centered</h4>
-            <p class="text-gray-500 text-sm">Your needs and comfort are at the heart of everything we do at Dental Blue.</p>
-          </div>
-          <div class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 text-center hover:shadow-md transition-shadow">
-            <div class="w-14 h-14 bg-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-              <span class="text-2xl">🏆</span>
-            </div>
-            <h4 class="font-bold text-gray-900 text-lg mb-3">Continuous Learning</h4>
-            <p class="text-gray-500 text-sm">Our team stays updated with the latest dental advancements and techniques.</p>
-          </div>
+            <h4 class="font-bold text-gray-900 text-lg mb-3">${value.title}</h4>
+            <p class="text-gray-500 text-sm">${value.description}</p>
+          </div>`,
+            )
+            .join("")}
         </div>
       </div>
     </div>
 
-    <!-- Stats Section -->
     <div class="py-20">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">The Reasons We're Unbeatable</h2>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-4">${t("aboutPage.statsTitle")}</h2>
         </div>
         <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+          ${stats
+            .map(
+              (item) => `
           <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">5+</p>
-            <p class="text-gray-500 text-sm text-center">Total Branches</p>
-          </div>
-          <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">8+</p>
-            <p class="text-gray-500 text-sm text-center">Years Experience</p>
-          </div>
-          <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">5k+</p>
-            <p class="text-gray-500 text-sm text-center">Smiles Restored</p>
-          </div>
-          <div class="w-36 h-36 rounded-full border-4 border-blue-100 flex flex-col items-center justify-center mx-auto">
-            <p class="text-3xl md:text-4xl font-bold text-blue-600">10+</p>
-            <p class="text-gray-500 text-sm text-center">Skilled Dentists</p>
-          </div>
+            <p class="text-3xl md:text-4xl font-bold text-blue-600">${item.value}</p>
+            <p class="text-gray-500 text-sm text-center">${item.label}</p>
+          </div>`,
+            )
+            .join("")}
         </div>
       </div>
     </div>
 
-    <!-- Team Section (reused web component) -->
     <div id="team" class="py-20 bg-white">
       <team-section></team-section>
     </div>
 
     <div id="about-services-slot"></div>
 
-    <!-- CTA Section -->
     <div class="py-20 bg-gray-50">
       <div class="max-w-7xl mx-auto px-6 lg:px-8">
         <div class="bg-blue-600 text-white rounded-3xl p-10 md:p-16 text-center">
           <h2 class="text-2xl md:text-4xl font-semibold mb-6">
-            Ready to Transform Your Smile?
+            ${t("aboutPage.ctaTitle")}
           </h2>
           <p class="text-white/80 max-w-2xl mx-auto mb-10 text-lg">
-            Schedule your consultation today and experience the Dental Blue difference.
-            Our team is ready to help you achieve the smile you've always wanted.
+            ${t("aboutPage.ctaBody")}
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
             <a href="#contact" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm">
-              Book Appointment
+              ${t("common.bookAppointment")}
             </a>
             <a href="#contact" class="border border-white text-gray-900 bg-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
-              Contact Us
+              ${t("common.contactUs")}
             </a>
           </div>
         </div>

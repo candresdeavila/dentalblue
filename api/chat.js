@@ -42,6 +42,19 @@ ubicada en Soledad, Colombia. Tu personalidad es cálida, amigable y profesional
 - Usa emojis con moderación para mantener un tono cercano 😊
 `;
 
+const LANGUAGE_HINTS = {
+  es: `
+## Preferencia de idioma actual
+- El idioma activo del sitio es español
+- Si el usuario escribe algo breve o ambiguo, prioriza responder en español
+`,
+  en: `
+## Current language preference
+- The active site language is English
+- If the user sends a short or ambiguous message, prioritize replying in English
+`,
+};
+
 const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
 
 export default async function handler(req, res) {
@@ -56,6 +69,7 @@ export default async function handler(req, res) {
   try {
     const body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
     const messages = body?.messages;
+    const lang = body?.lang === "en" ? "en" : "es";
 
     if (!Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: "Invalid payload: messages must be a non-empty array" });
@@ -70,7 +84,7 @@ export default async function handler(req, res) {
         },
         body: JSON.stringify({
           system_instruction: {
-            parts: [{ text: SYSTEM_PROMPT }],
+            parts: [{ text: `${SYSTEM_PROMPT}\n${LANGUAGE_HINTS[lang]}` }],
           },
           contents: messages,
         }),

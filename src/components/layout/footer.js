@@ -1,20 +1,38 @@
+import { getLang, t } from "../../i18n/i18n.js";
+
 class AppFooter extends HTMLElement {
   constructor() {
     super();
     this.handleBlogClick = this.handleBlogClick.bind(this);
+    this.handleLangChange = this.handleLangChange.bind(this);
   }
 
   connectedCallback() {
+    this.render();
+    window.addEventListener("langchange", this.handleLangChange);
+  }
+
+  disconnectedCallback() {
+    if (this.blogLinks) {
+      this.blogLinks.forEach((link) => {
+        link.removeEventListener("click", this.handleBlogClick);
+      });
+    }
+
+    window.removeEventListener("langchange", this.handleLangChange);
+  }
+
+  render() {
+    const whatsappMessage = encodeURIComponent(t("common.whatsappMessage"));
+    this.dataset.lang = getLang();
+
     this.innerHTML = `
     <footer class="bg-white text-gray-700 pt-16 pb-8">
       <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-        
-        <!-- Columna 1: Logo + Contacto -->
         <div>
           <div class="flex items-center mb-4">
-            <!-- Logo -->
              <a href="/" data-link="home" class="flex items-center space-x-2">
-              <img src="/assets/icons/logo_transparente.webp" alt="Dental Blue Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/icons/logo_transparente.webp" alt="${t("common.dentalBlueLogoAlt")}" loading="lazy" decoding="async" class="h-10 w-10">
               <span class="font-bold text-xl text-gray-900">Dental Blue</span>
              </a>
           </div>
@@ -26,65 +44,55 @@ class AppFooter extends HTMLElement {
           </p>
         </div>
 
-        <!-- Columna 2: Smile Bright Clinic -->
         <div>
-          <h4 class="text-lg font-semibold text-gray-900 mb-4">Dental Blue Clinic</h4>
+          <h4 class="text-lg font-semibold text-gray-900 mb-4">${t("footer.clinicTitle")}</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="/about" data-link="about" class="hover:text-[#3B68FF]">About Us</a></li>
-            <li><a href="#services" data-section="services" class="hover:text-[#3B68FF]">Our Services</a></li>
-            <li><a href="#team" data-section="team" class="hover:text-[#3B68FF]">Team</a></li>
-            <li><a href="#blog" data-section="blog" class="hover:text-[#3B68FF]">Blog</a></li>
-            <li><a href="https://wa.me/573232050782?text=Hola%20quiero%20agendar%20una%20cita%20en%20Dental%20Blue" class="hover:text-[#3B68FF]" target="_blank"
-        rel="noopener noreferrer">Contact Us</a></li>
+            <li><a href="/about" data-link="about" class="hover:text-[#3B68FF]">${t("header.about")}</a></li>
+            <li><a href="#services" data-section="services" class="hover:text-[#3B68FF]">${t("header.services")}</a></li>
+            <li><a href="#team" data-section="team" class="hover:text-[#3B68FF]">${t("header.team")}</a></li>
+            <li><a href="#blog" data-section="blog" class="hover:text-[#3B68FF]">${t("header.blog")}</a></li>
+            <li><a href="https://wa.me/573232050782?text=${whatsappMessage}" class="hover:text-[#3B68FF]" target="_blank" rel="noopener noreferrer">${t("header.contact")}</a></li>
           </ul>
         </div>
 
-        <!-- Columna 3: Helpful Links -->
         <div>
-          <h4 class="text-lg font-semibold text-gray-900 mb-4">Helpful Links</h4>
+          <h4 class="text-lg font-semibold text-gray-900 mb-4">${t("footer.helpfulLinks")}</h4>
           <ul class="space-y-2 text-sm">
-            <li><a href="#" class="hover:text-[#3B68FF]">Clinics</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Special Offers</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Careers</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Complaints Policy</a></li>
-            <li><a href="#" class="hover:text-[#3B68FF]">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:text-[#3B68FF]">${t("footer.clinics")}</a></li>
+            <li><a href="#" class="hover:text-[#3B68FF]">${t("footer.specialOffers")}</a></li>
+            <li><a href="#" class="hover:text-[#3B68FF]">${t("footer.careers")}</a></li>
+            <li><a href="#" class="hover:text-[#3B68FF]">${t("footer.complaintsPolicy")}</a></li>
+            <li><a href="#" class="hover:text-[#3B68FF]">${t("footer.termsConditions")}</a></li>
           </ul>
         </div>
 
-        <!-- Columna 4: Opening Times -->
         <div>
-          <h4 class="text-lg font-semibold text-gray-900 mb-4">Opening Times</h4>
+          <h4 class="text-lg font-semibold text-gray-900 mb-4">${t("footer.openingTimes")}</h4>
           <ul class="space-y-2 text-sm">
-            <li><span class="text-[#3B68FF] font-medium">Monday – Friday:</span> 08:00am – 05:00pm</li>
-            <li><span class="text-[#3B68FF] font-medium">Saturday:</span> 08:00am – 12:00pm</li>
-            <li><span class="text-[#3B68FF] font-medium">Sunday:</span> Closed</li>
+            <li><span class="text-[#3B68FF] font-medium">${t("footer.mondayFriday")}</span> 08:00am - 05:00pm</li>
+            <li><span class="text-[#3B68FF] font-medium">${t("footer.saturday")}</span> 08:00am - 12:00pm</li>
+            <li><span class="text-[#3B68FF] font-medium">${t("footer.sunday")}</span> ${t("footer.closed")}</li>
           </ul>
         </div>
       </div>
 
-      <!-- Línea divisoria -->
       <div class="border-t border-gray-200 mt-12 pt-8">
         <div class="max-w-7xl mx-auto px-6 flex flex-col sm:flex-row justify-between items-center gap-4">
-          
           <p class="text-sm text-gray-500">
-            © 2025 Dental Blue. All Rights Reserved.
+            ${t("footer.copyright")}
           </p>
 
-          <!-- Redes sociales -->
           <div class="flex space-x-4 md:mr-20 lg:mr-0">
-           <!-- <a href="#" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <i class="fab fa-facebook-f"></i>
-            </a>-->
             <a href="https://www.tiktok.com/@dentalblue_?_r=1&_t=ZS-94kGNRqsJyz" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <img src="/assets/logos/tik-tok.webp" alt="Dental Blue TikTok Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/logos/tik-tok.webp" alt="${t("footer.tiktokAlt")}" loading="lazy" decoding="async" class="h-10 w-10">
               <i class="fab fa-x-tiktok"></i>
             </a>
             <a href="https://www.instagram.com/dra.angelicacervantes?igsh=MTZscHRpMWJiYWlz" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <img src="/assets/logos/instagram.webp" alt="Dental Blue Instagram Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/logos/instagram.webp" alt="${t("footer.instagramAlt")}" loading="lazy" decoding="async" class="h-10 w-10">
               <i class="fab fa-instagram"></i>
             </a>
             <a href="https://www.linkedin.com/company/dental-blue-col" class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center hover:bg-[#3B68FF] hover:text-white transition">
-              <img src="/assets/logos/linkedin.webp" alt="Dental Blue LinkedIn Logo" loading="lazy" decoding="async" class="h-10 w-10">
+              <img src="/assets/logos/linkedin.webp" alt="${t("footer.linkedinAlt")}" loading="lazy" decoding="async" class="h-10 w-10">
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
@@ -99,12 +107,8 @@ class AppFooter extends HTMLElement {
     });
   }
 
-  disconnectedCallback() {
-    if (!this.blogLinks) return;
-
-    this.blogLinks.forEach((link) => {
-      link.removeEventListener("click", this.handleBlogClick);
-    });
+  handleLangChange() {
+    this.render();
   }
 
   handleBlogClick(event) {

@@ -1,6 +1,4 @@
 export function initNavbar({ renderPage, renderHomePage, renderAboutUs }) {
-  const btn = document.querySelector("#menu-btn");
-  const menu = document.querySelector("#menu");
   const TOP_NAVIGATION_DELAY_MS = 300;
 
   const navigateWithTransition = (update) => {
@@ -38,11 +36,6 @@ export function initNavbar({ renderPage, renderHomePage, renderAboutUs }) {
       });
     }
   };
-
-  // Toggle menú mobile
-  btn.addEventListener("click", () => {
-    menu.classList.toggle("hidden");
-  });
 
   // Navegación SPA
   document.addEventListener("click", (e) => {

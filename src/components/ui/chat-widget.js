@@ -1,3 +1,5 @@
+import { getLang, t } from "../../i18n/i18n.js";
+
 class ChatWidget extends HTMLElement {
   constructor() {
     super();
@@ -8,27 +10,44 @@ class ChatWidget extends HTMLElement {
     this.keyboardOffset = 80;
     this.previousBodyOverflow = "";
     this.mobileViewportHandler = null;
-    this.messages = [
+    this.messages = this.createInitialMessages();
+    this.handleToggleClick = this.handleToggleClick.bind(this);
+    this.handleCloseClick = this.handleCloseClick.bind(this);
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleInputFocus = this.handleInputFocus.bind(this);
+    this.handleInputBlur = this.handleInputBlur.bind(this);
+    this.handleLangChange = this.handleLangChange.bind(this);
+  }
+
+  connectedCallback() {
+    this.render();
+    window.addEventListener("langchange", this.handleLangChange);
+  }
+
+  disconnectedCallback() {
+    this.unbindMobileViewportListeners();
+    if (this.isOpen && this.isMobile()) {
+      this.restoreMobileOpenStyles();
+    }
+    window.removeEventListener("langchange", this.handleLangChange);
+  }
+
+  createInitialMessages() {
+    return [
       {
         role: "model",
-        parts: [
-          {
-            text: "¡Hola! 👋 Soy Sofía, asistente virtual de Dental Blue. ¿En qué puedo ayudarte hoy?",
-          },
-        ],
+        parts: [{ text: t("chat.initialGreeting") }],
       },
     ];
   }
 
-  connectedCallback() {
-    if (this.childElementCount > 0) return;
-
+  render() {
     this.innerHTML = `
       <div class="fixed bottom-[4.75rem] right-4 md:bottom-[6rem] md:right-6 z-50">
         <button
           type="button"
           data-chat-toggle
-          aria-label="Abrir chat de Dental Blue"
+          aria-label="${t("chat.toggleAria")}"
           class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-[#1E90FF] text-white shadow-lg hover:brightness-95 transition-all duration-300 flex items-center justify-center text-xl md:text-2xl focus:outline-none focus:ring-4 focus:ring-blue-300"
         >
           💬
@@ -38,20 +57,20 @@ class ChatWidget extends HTMLElement {
       <section
         data-chat-panel
         class="hidden fixed bottom-[8.5rem] right-4 md:bottom-[10rem] md:right-6 z-50 w-[calc(100vw-2rem)] max-w-sm h-[min(520px,calc(100vh-140px))] max-h-[calc(100vh-140px)] bg-white rounded-2xl shadow-2xl border border-slate-200 overflow-hidden flex flex-col"
-        aria-label="Chat con Sofía"
+        aria-label="${t("chat.panelAria")}"
       >
         <header class="bg-[#1E90FF] text-white px-4 py-3 flex items-center justify-between">
           <div class="flex items-center gap-3">
             <div class="w-9 h-9 rounded-full bg-white text-[#1E90FF] font-bold flex items-center justify-center">S</div>
             <div>
               <p class="font-semibold leading-tight">Sofía</p>
-              <p class="text-xs text-blue-100 leading-tight">Asistente Dental Blue</p>
+              <p class="text-xs text-blue-100 leading-tight">${t("chat.assistantRole")}</p>
             </div>
           </div>
           <button
             type="button"
             data-chat-close
-            aria-label="Cerrar chat"
+            aria-label="${t("chat.closeAria")}"
             class="text-white/90 hover:text-white text-lg leading-none"
           >
             ×
@@ -64,7 +83,7 @@ class ChatWidget extends HTMLElement {
           <input
             data-chat-input
             type="text"
-            placeholder="Escribe tu mensaje..."
+            placeholder="${t("chat.placeholder")}"
             class="flex-1 border border-slate-300 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#1E90FF]"
             maxlength="500"
             required
@@ -73,7 +92,7 @@ class ChatWidget extends HTMLElement {
             type="submit"
             class="rounded-full bg-[#1E90FF] text-white px-4 py-2 text-sm font-medium hover:brightness-95 transition-all"
           >
-            Enviar
+            ${t("chat.send")}
           </button>
         </form>
       </section>
@@ -86,28 +105,57 @@ class ChatWidget extends HTMLElement {
     this.form = this.querySelector("[data-chat-form]");
     this.input = this.querySelector("[data-chat-input]");
 
-    this.toggleButton.addEventListener("click", () => this.openChat());
-    this.closeButton.addEventListener("click", () => this.closeChat());
-    this.form.addEventListener("submit", (event) => this.handleSubmit(event));
-    this.input.addEventListener("focus", () => this.adjustForKeyboard());
-    this.input.addEventListener("blur", () => {
-      window.setTimeout(() => this.adjustForKeyboard(), 120);
-    });
+    this.toggleButton.addEventListener("click", this.handleToggleClick);
+    this.closeButton.addEventListener("click", this.handleCloseClick);
+    this.form.addEventListener("submit", this.handleFormSubmit);
+    this.input.addEventListener("focus", this.handleInputFocus);
+    this.input.addEventListener("blur", this.handleInputBlur);
     this.input.classList.remove("text-sm");
     this.input.classList.add("text-base", "md:text-sm");
+
+    if (this.isOpen) {
+      this.panel.classList.remove("hidden");
+      this.toggleButton.classList.add("hidden");
+      if (this.isMobile()) {
+        this.applyMobileOpenStyles();
+      }
+    }
 
     this.renderMessages();
   }
 
-  disconnectedCallback() {
-    this.unbindMobileViewportListeners();
-    if (this.isOpen && this.isMobile()) {
-      this.restoreMobileOpenStyles();
+  handleToggleClick() {
+    this.openChat();
+  }
+
+  handleCloseClick() {
+    this.closeChat();
+  }
+
+  handleFormSubmit(event) {
+    this.handleSubmit(event);
+  }
+
+  handleInputFocus() {
+    this.adjustForKeyboard();
+  }
+
+  handleInputBlur() {
+    window.setTimeout(() => this.adjustForKeyboard(), 120);
+  }
+
+  handleLangChange() {
+    if (this.messages.length === 1 && this.messages[0]?.role === "model") {
+      this.messages = this.createInitialMessages();
     }
+    this.render();
   }
 
   isMobile() {
-    return window.innerWidth <= 768 || /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    return (
+      window.innerWidth <= 768 ||
+      /Android|iPhone|iPad|iPod/i.test(navigator.userAgent)
+    );
   }
 
   bindMobileViewportListeners() {
@@ -126,8 +174,14 @@ class ChatWidget extends HTMLElement {
     if (!this.mobileViewportHandler) return;
 
     if (window.visualViewport) {
-      window.visualViewport.removeEventListener("resize", this.mobileViewportHandler);
-      window.visualViewport.removeEventListener("scroll", this.mobileViewportHandler);
+      window.visualViewport.removeEventListener(
+        "resize",
+        this.mobileViewportHandler,
+      );
+      window.visualViewport.removeEventListener(
+        "scroll",
+        this.mobileViewportHandler,
+      );
     } else {
       window.removeEventListener("resize", this.mobileViewportHandler);
     }
@@ -183,8 +237,12 @@ class ChatWidget extends HTMLElement {
   onViewportResize() {
     if (!this.isMobile() || !this.isOpen) return;
 
-    const viewportHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
-    const viewportOffsetTop = window.visualViewport ? window.visualViewport.offsetTop : 0;
+    const viewportHeight = window.visualViewport
+      ? window.visualViewport.height
+      : window.innerHeight;
+    const viewportOffsetTop = window.visualViewport
+      ? window.visualViewport.offsetTop
+      : 0;
     this.panel.style.height = `${viewportHeight}px`;
     this.panel.style.maxHeight = `${viewportHeight}px`;
     this.panel.style.top = `${viewportOffsetTop}px`;
@@ -243,7 +301,10 @@ class ChatWidget extends HTMLElement {
     }
 
     if (this.isKeyboardActive(viewportHeight)) {
-      const dynamicHeight = Math.max(260, Math.floor(viewportHeight - this.keyboardOffset));
+      const dynamicHeight = Math.max(
+        260,
+        Math.floor(viewportHeight - this.keyboardOffset),
+      );
       this.panel.style.height = `${dynamicHeight}px`;
       this.panel.style.maxHeight = `${dynamicHeight}px`;
     } else {
@@ -272,7 +333,7 @@ class ChatWidget extends HTMLElement {
       ? `
         <div class="flex justify-start">
           <div class="bg-white text-slate-500 border border-slate-200 max-w-[85%] rounded-2xl px-3 py-2 text-sm shadow-sm">
-            Sofía está escribiendo...
+            ${this.escapeHTML(t("chat.typing"))}
           </div>
         </div>
       `
@@ -308,26 +369,22 @@ class ChatWidget extends HTMLElement {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ messages: this.messages }),
+        body: JSON.stringify({ messages: this.messages, lang: getLang() }),
       });
 
       const data = await response.json().catch(() => ({}));
       if (!response.ok) {
-        throw new Error(data.error || "No se pudo obtener respuesta del asistente.");
+        throw new Error(data.error || t("chat.responseError"));
       }
 
       this.messages.push({
         role: "model",
-        parts: [{ text: data.reply || "No recibí respuesta. ¿Puedes intentarlo de nuevo?" }],
+        parts: [{ text: data.reply || t("chat.replyFallback") }],
       });
     } catch (error) {
       this.messages.push({
         role: "model",
-        parts: [
-          {
-            text: "Lo siento, tuve un problema técnico. Puedes escribirnos por WhatsApp para ayudarte enseguida.",
-          },
-        ],
+        parts: [{ text: t("chat.errorTechnical") }],
       });
       console.error("Chat widget error:", error);
     } finally {

@@ -1,4 +1,5 @@
 import "./style.css";
+import { getLang } from "./i18n/i18n.js";
 
 // Layout
 import "./components/layout/header.js";
@@ -22,13 +23,19 @@ import { renderPremiun } from "./pages/home/premiunTreatment.js";
 import { renderAboutUs } from "./pages/about/about.js";
 
 const root = document.querySelector("#app");
+let currentPageRenderer = renderHomePage;
 
 /* ===============================
    PAGE RENDERER
 ================================ */
 function renderPage(contentFn) {
+  currentPageRenderer = contentFn;
   root.innerHTML = "";
   root.appendChild(contentFn());
+}
+
+function syncDocumentLanguage() {
+  document.documentElement.lang = getLang();
 }
 
 /* ===============================
@@ -74,6 +81,8 @@ function handleHashNavigation() {
    APP INIT
 ================================ */
 document.addEventListener("DOMContentLoaded", () => {
+  syncDocumentLanguage();
+
   // Header & Navbar
   document.body.insertAdjacentElement(
     "afterbegin",
@@ -90,6 +99,11 @@ document.addEventListener("DOMContentLoaded", () => {
   handleHashNavigation();
 
   window.addEventListener("hashchange", handleHashNavigation);
+  window.addEventListener("langchange", () => {
+    syncDocumentLanguage();
+    renderPage(currentPageRenderer);
+    handleHashNavigation();
+  });
 
   // Footer (global)
   document.body.appendChild(document.createElement("app-footer"));
