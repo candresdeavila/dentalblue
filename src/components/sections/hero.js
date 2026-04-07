@@ -56,9 +56,9 @@ class HeroSection extends HTMLElement {
       [title, paragraph],
       { opacity: [0, 1], y: [24, 0] },
       {
-        duration: 0.7,
+        duration: 1.1,
         ease: "easeOut",
-        delay: stagger(0.15),
+        delay: stagger(0.22),
       },
     );
   }
