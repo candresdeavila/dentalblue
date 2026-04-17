@@ -5,6 +5,9 @@ export const translations = {
       whatsappMessage:
         "Hello, I would like to schedule an appointment at Dental Blue.",
       yearsExperience: "8+ Years Experience",
+      certifiedClinic: "Certified Dental Clinic",
+      hygieneStandards: "International hygiene standards",
+      ratedByPatients: "Rated by our patients",
       contactUs: "Contact Us",
       learnMore: "Learn More",
       scheduleCall: "Schedule a Call",
@@ -16,7 +19,7 @@ export const translations = {
     },
     header: {
       about: "About Us",
-      services: "Our Services",
+      services: "Services",
       team: "Team",
       blog: "Blog",
       contact: "Contact Us",
@@ -48,11 +51,17 @@ export const translations = {
     hero: {
       home: {
         ariaLabel: "Home hero section",
-        titleIntro: "Welcome to",
+        eyebrow: "CERTIFIED DENTAL CLINIC",
+        titleLine1: "We build",
+        titleHighlight: "smiles",
+        titleLine2: "with",
+        titleLine3: "love",
         paragraph:
           "Our experienced dental team offers a blend of extensive knowledge and personalized professional care tailored to your specific needs.",
         primaryCta: "View Services",
-        secondaryCta: "Schedule a Call",
+        secondaryCta: "Book Appointment",
+        socialProof: "+2k",
+        ratingScore: "4.9/5",
       },
       about: {
         ariaLabel: "About hero section",
@@ -275,17 +284,17 @@ export const translations = {
         "We are proud to have gained the trust of countless patients through excellent service and professional care.",
       testimonials: [
         {
-          quote: "\"Amazing experience and friendly staff!\"",
+          quote: '"Amazing experience and friendly staff!"',
           name: "Ashley Williams",
           role: "Patient",
         },
         {
-          quote: "\"They truly care about your smile!\"",
+          quote: '"They truly care about your smile!"',
           name: "Renny Thompson",
           role: "Patient",
         },
         {
-          quote: "\"State-of-the-art technology and service.\"",
+          quote: '"State-of-the-art technology and service."',
           name: "Dr. Lisa Moreno",
           role: "Patient",
         },
@@ -316,6 +325,9 @@ export const translations = {
       dentalBlueLogoAlt: "Logo de Dental Blue",
       whatsappMessage: "Hola, quiero agendar una cita en Dental Blue.",
       yearsExperience: "8+ años de experiencia",
+      certifiedClinic: "Clínica Certificada",
+      hygieneStandards: "Estándares internacionales de higiene",
+      ratedByPatients: "Calificado por nuestros pacientes",
       contactUs: "Contáctanos",
       learnMore: "Conoce más",
       scheduleCall: "Agenda una llamada",
@@ -327,7 +339,7 @@ export const translations = {
     },
     header: {
       about: "Sobre Nosotros",
-      services: "Nuestros Servicios",
+      services: "Servicios",
       team: "Equipo",
       blog: "Blog",
       contact: "Contáctanos",
@@ -359,11 +371,17 @@ export const translations = {
     hero: {
       home: {
         ariaLabel: "Sección principal de inicio",
-        titleIntro: "Bienvenido a",
+        eyebrow: "CLÍNICA DENTAL CERTIFICADA",
+        titleLine1: "Construimos",
+        titleHighlight: "sonrisas",
+        titleLine2: "con",
+        titleLine3: "amor",
         paragraph:
           "Nuestro experimentado equipo dental ofrece una combinación de amplio conocimiento y atención profesional personalizada, adaptada a tus necesidades específicas.",
         primaryCta: "Ver servicios",
-        secondaryCta: "Agenda una llamada",
+        secondaryCta: "Agendar cita",
+        socialProof: "+2k",
+        ratingScore: "4.9/5",
       },
       about: {
         ariaLabel: "Sección principal sobre nosotros",
@@ -586,17 +604,17 @@ export const translations = {
         "Nos enorgullece haber ganado la confianza de innumerables pacientes gracias a un servicio excelente y atención profesional.",
       testimonials: [
         {
-          quote: "\"¡Una experiencia increíble y un personal muy amable!\"",
+          quote: '"¡Una experiencia increíble y un personal muy amable!"',
           name: "Ashley Williams",
           role: "Paciente",
         },
         {
-          quote: "\"¡De verdad se preocupan por tu sonrisa!\"",
+          quote: '"¡De verdad se preocupan por tu sonrisa!"',
           name: "Renny Thompson",
           role: "Paciente",
         },
         {
-          quote: "\"Tecnología de punta y servicio excelente.\"",
+          quote: '"Tecnología de punta y servicio excelente."',
           name: "Dr. Lisa Moreno",
           role: "Paciente",
         },
