@@ -91,15 +91,26 @@ class TeamSection extends HTMLElement {
 
         .team-section-root .team-member-card {
           overflow: hidden;
+          position: relative;
+          border: 1px solid rgba(255, 255, 255, 0.55);
+          box-shadow:
+            0 20px 45px rgba(15, 23, 42, 0.12),
+            0 6px 18px rgba(15, 23, 42, 0.08);
         }
 
         .team-section-root .team-photo-frame {
           width: 12rem;
           height: 12rem;
           overflow: hidden;
-          border-radius: 1rem;
-          margin-bottom: 1rem;
+          border-radius: 1.5rem;
+          margin-bottom: 1.25rem;
           flex-shrink: 0;
+          background:
+            linear-gradient(180deg, rgba(239, 246, 255, 0.95), rgba(219, 234, 254, 0.75));
+          box-shadow:
+            0 14px 28px rgba(15, 23, 42, 0.08),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+          transition: transform 220ms ease, box-shadow 220ms ease;
         }
 
         .team-section-root .team-photo-frame img {
@@ -107,6 +118,22 @@ class TeamSection extends HTMLElement {
           width: 100%;
           height: 100%;
           object-fit: cover;
+          transition: transform 260ms ease;
+        }
+
+        .team-section-root .team-photo-frame:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 18px 35px rgba(59, 104, 255, 0.18);
+        }
+
+        .team-section-root .team-photo-frame:hover img {
+          transform: scale(1.04);
+        }
+
+        .team-section-root .team-member-content {
+          position: relative;
+          z-index: 1;
+          text-align: center;
         }
 
         .team-section-root .carousel-container {
@@ -142,12 +169,14 @@ class TeamSection extends HTMLElement {
                 .map(
                   (member) => `
                 <div class="team-card w-full sm:w-1/2 lg:w-1/3 flex justify-center px-2">
-                  <div class="team-member-card bg-white rounded-3xl p-6 shadow-lg text-gray-900 w-full flex flex-col items-center hover:scale-105 transition">
+                  <div class="team-member-card bg-white rounded-3xl p-6 text-gray-900 w-full flex flex-col items-center">
                     <div class="team-photo-frame">
-                      <img src="${member.img}" alt="${member.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover rounded-2xl mb-4" style="${member.imageStyle || ""}" />
+                      <img src="${member.img}" alt="${member.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover" style="${member.imageStyle || ""}" />
                     </div>
-                    <h3 class="text-lg font-semibold">${member.name}</h3>
-                    <p class="text-sm text-gray-600">${member.role}</p>
+                    <div class="team-member-content">
+                      <h3 class="text-lg font-semibold">${member.name}</h3>
+                      <p class="text-sm text-gray-600">${member.role}</p>
+                    </div>
                   </div>
                 </div>
               `,
