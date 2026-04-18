@@ -5,6 +5,12 @@ class TeamSection extends HTMLElement {
     super();
     this.onNext = null;
     this.onPrev = null;
+    this.onTeamClick = null;
+    this.onModalKeydown = null;
+    this.activeModal = null;
+    this.modalCloseTimeout = null;
+    this.activeMember = null;
+    this.bodyOverflow = "";
     this.handleLangChange = this.handleLangChange.bind(this);
   }
 
@@ -23,53 +29,120 @@ class TeamSection extends HTMLElement {
       this.prevButton.removeEventListener("click", this.onPrev);
     }
 
+    if (this.onTeamClick) {
+      this.removeEventListener("click", this.onTeamClick);
+    }
+
+    if (this.onModalKeydown) {
+      window.removeEventListener("keydown", this.onModalKeydown);
+    }
+
+    this.closeModal(true);
     window.removeEventListener("langchange", this.handleLangChange);
     this.carousel = null;
     this.nextButton = null;
     this.prevButton = null;
     this.onNext = null;
     this.onPrev = null;
+    this.onTeamClick = null;
+    this.onModalKeydown = null;
+    this.activeModal = null;
+    this.activeMember = null;
   }
 
   getMembers() {
     return [
       {
-        name: "Dr. Angelica Cervantes",
+        name: "Dra. Angelica Cervantes",
         role: t("team.roles.leadDentist"),
+        specialty: "Lead Dentist / Rehabilitacion Oral",
         img: "/assets/images/team/dental_blue_staff1.webp",
         imageStyle:
           "object-fit: contain; object-position: center bottom; background: white;",
+        bio: "Especialista en rehabilitacion oral y estetica dental avanzada con mas de una decada transformando sonrisas. La Dra. Cervantes combina la precision clinica con un enfoque humano para garantizar una experiencia segura, cercana y de excelencia.",
+        ctaLabel: "Agendar Cita con Dra. Cervantes",
+        stats: {
+          experience: "10+",
+          patients: "2k+",
+          rating: "5.0",
+        },
       },
       {
         name: "Mariana",
         role: t("team.roles.dentalHygienist"),
+        specialty: "Dental Hygienist / Profilaxis Clinica",
         img: "/assets/images/team/dental_blue_staff2.webp",
         imageStyle:
           "object-fit: contain; object-position: center bottom; background: white;",
+        bio: "Mariana acompana a cada paciente con una atencion preventiva detallada y amable. Su enfoque en higiene oral y educacion personalizada ayuda a mantener sonrisas saludables y tratamientos mas duraderos.",
+        ctaLabel: "Agendar Cita con Mariana",
+        stats: {
+          experience: "8+",
+          patients: "1.5k+",
+          rating: "5.0",
+        },
       },
       {
         name: "Dr. Luis Barros",
         role: t("team.roles.orthodontist"),
+        specialty: "Orthodontist / Diseno de Sonrisa",
         img: "/assets/images/team/dental_blue_staff3.webp",
         imageStyle:
           "object-fit: contain; object-position: center bottom; background: white;",
+        bio: "El Dr. Barros desarrolla planes de ortodoncia que equilibran funcion, estetica y comodidad. Trabaja con tecnologia de diagnostico actual para ofrecer resultados precisos y progresivos.",
+        ctaLabel: "Agendar Cita con Dr. Barros",
+        stats: {
+          experience: "9+",
+          patients: "1.8k+",
+          rating: "4.9",
+        },
       },
       {
         name: "Dr. Yolanda Alonso",
         role: t("team.roles.endodontist"),
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
+        specialty: "Endodontist / Tratamientos de Conducto",
+        bio: "La Dra. Alonso se especializa en diagnostico preciso y tratamientos endodonticos conservadores. Su prioridad es aliviar el dolor, preservar piezas dentales y dar tranquilidad en cada etapa del proceso.",
+        ctaLabel: "Agendar Cita con Dra. Alonso",
+        stats: {
+          experience: "11+",
+          patients: "2.3k+",
+          rating: "5.0",
+        },
       },
       {
         name: "Dr. Joyce Barrios",
         role: t("team.roles.pediatricDentist"),
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
+        specialty: "Pediatric Dentist / Odontologia Infantil",
+        bio: "La Dra. Barrios crea experiencias positivas para ninos y familias con una atencion paciente, clara y cercana. Su practica se centra en prevencion temprana y acompanamiento integral del desarrollo oral infantil.",
+        ctaLabel: "Agendar Cita con Dra. Barrios",
+        stats: {
+          experience: "7+",
+          patients: "1.2k+",
+          rating: "5.0",
+        },
       },
     ];
   }
 
   handleLangChange() {
+    const activeMemberName = this.activeMember?.name || null;
+
     this.render();
     this.bindEvents();
+
+    if (!activeMemberName) {
+      return;
+    }
+
+    const translatedMember = this.getMembers().find(
+      (member) => member.name === activeMemberName,
+    );
+
+    if (translatedMember) {
+      this.openModal(translatedMember);
+    }
   }
 
   render() {
@@ -96,6 +169,13 @@ class TeamSection extends HTMLElement {
           box-shadow:
             0 20px 45px rgba(15, 23, 42, 0.12),
             0 6px 18px rgba(15, 23, 42, 0.08);
+          cursor: pointer;
+          transition: border-color 220ms ease;
+        }
+
+        .team-section-root .team-member-card:focus-visible {
+          outline: 3px solid rgba(255, 255, 255, 0.75);
+          outline-offset: 4px;
         }
 
         .team-section-root .team-photo-frame {
@@ -167,9 +247,15 @@ class TeamSection extends HTMLElement {
             <div class="team-carousel">
               ${members
                 .map(
-                  (member) => `
+                  (member, index) => `
                 <div class="team-card w-full sm:w-1/2 lg:w-1/3 flex justify-center px-2">
-                  <div class="team-member-card bg-white rounded-3xl p-6 text-gray-900 w-full flex flex-col items-center">
+                  <div
+                    class="team-member-card bg-white rounded-3xl p-6 text-gray-900 w-full flex flex-col items-center"
+                    data-member-index="${index}"
+                    role="button"
+                    tabindex="0"
+                    aria-label="Ver perfil de ${member.name}"
+                  >
                     <div class="team-photo-frame">
                       <img src="${member.img}" alt="${member.name}" loading="lazy" decoding="async" class="w-48 h-48 object-cover" style="${member.imageStyle || ""}" />
                     </div>
@@ -225,8 +311,276 @@ class TeamSection extends HTMLElement {
       this.carousel.scrollBy({ left: -cardWidth, behavior: "smooth" });
     };
 
+    if (this.onTeamClick) {
+      this.removeEventListener("click", this.onTeamClick);
+    }
+
+    this.onTeamClick = (event) => {
+      const card = event.target.closest(".team-member-card");
+
+      if (!card || !this.contains(card)) {
+        return;
+      }
+
+      const memberIndex = Number(card.dataset.memberIndex);
+      const selectedMember = this.getMembers()[memberIndex];
+
+      if (!selectedMember) {
+        return;
+      }
+
+      this.openModal(selectedMember);
+    };
+
+    this.addEventListener("click", this.onTeamClick);
     this.nextButton.addEventListener("click", this.onNext);
     this.prevButton.addEventListener("click", this.onPrev);
+
+    this.querySelectorAll(".team-member-card").forEach((card) => {
+      card.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter" && event.key !== " ") {
+          return;
+        }
+
+        event.preventDefault();
+        card.click();
+      });
+    });
+  }
+
+  createElement(tag, className, textContent) {
+    const element = document.createElement(tag);
+
+    if (className) {
+      element.className = className;
+    }
+
+    if (typeof textContent === "string") {
+      element.textContent = textContent;
+    }
+
+    return element;
+  }
+
+  createStatItem(value, label, valueClassName = "") {
+    const stat = this.createElement(
+      "div",
+      "flex min-w-0 flex-1 flex-col items-center justify-center gap-1 px-2 text-center",
+    );
+    const statValue = this.createElement(
+      "span",
+      `text-xl font-bold tracking-tight text-slate-900 ${valueClassName}`.trim(),
+      value,
+    );
+    const statLabel = this.createElement(
+      "span",
+      "text-[0.65rem] font-semibold uppercase tracking-[0.28em] text-slate-500 sm:text-[0.7rem]",
+      label,
+    );
+
+    stat.append(statValue, statLabel);
+    return stat;
+  }
+
+  createModal(memberData) {
+    const whatsappMessage = encodeURIComponent(t("common.whatsappMessage"));
+    const whatsappHref = `https://wa.me/573232050782?text=${whatsappMessage}`;
+    const overlay = this.createElement(
+      "div",
+      "fixed inset-0 z-[999] flex items-end justify-center overflow-y-auto bg-slate-950/0 px-0 pb-0 pt-8 opacity-0 backdrop-blur-0 transition-all duration-300 ease-out sm:px-6 sm:py-12 md:items-center",
+    );
+    overlay.setAttribute("role", "presentation");
+
+    const modal = this.createElement(
+      "div",
+      "relative w-full translate-y-10 rounded-t-[2rem] bg-white px-6 pb-6 pt-20 text-slate-900 shadow-[0_28px_80px_rgba(15,23,42,0.32)] transition-all duration-300 ease-out sm:mt-16 sm:max-w-[37rem] sm:translate-y-0 sm:scale-95 sm:rounded-[2rem] sm:px-7 sm:pb-7 sm:pt-[4.5rem] md:mt-0 lg:max-w-xl lg:px-10 lg:pb-10 lg:pt-24",
+    );
+    modal.setAttribute("role", "dialog");
+    modal.setAttribute("aria-modal", "true");
+    modal.setAttribute("aria-labelledby", "team-modal-name");
+
+    const closeButton = this.createElement(
+      "button",
+      "absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:right-5 sm:top-5",
+    );
+    closeButton.type = "button";
+    closeButton.setAttribute("aria-label", "Cerrar modal");
+    closeButton.innerHTML = `
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
+      </svg>
+    `;
+
+    const avatarWrap = this.createElement(
+      "div",
+      "absolute left-1/2 top-0 flex h-28 w-28 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white p-1.5 shadow-[0_18px_42px_rgba(59,104,255,0.22)] sm:h-[7rem] sm:w-[7rem] lg:h-32 lg:w-32",
+    );
+    const avatar = this.createElement(
+      "img",
+      "h-full w-full rounded-full object-cover object-center bg-slate-100",
+    );
+    avatar.src = memberData.img;
+    avatar.alt = memberData.name;
+    avatar.loading = "lazy";
+    avatar.decoding = "async";
+
+    if (memberData.imageStyle) {
+      avatar.style.cssText = memberData.imageStyle;
+    }
+
+    avatarWrap.appendChild(avatar);
+
+    const content = this.createElement("div", "flex flex-col items-center text-center");
+    const name = this.createElement(
+      "h3",
+      "text-[1.95rem] font-semibold leading-tight tracking-tight text-slate-950 sm:text-[1.85rem] lg:text-[2.15rem]",
+      memberData.name,
+    );
+    name.id = "team-modal-name";
+
+    const specialty = this.createElement(
+      "p",
+      "mt-2 text-base font-medium text-blue-600 sm:text-[1rem] lg:text-[1.1rem]",
+      memberData.specialty || memberData.role,
+    );
+
+    const divider = this.createElement(
+      "div",
+      "mt-6 h-1.5 w-12 rounded-full bg-blue-100 sm:hidden",
+    );
+
+    const bioLabel = this.createElement(
+      "p",
+      "mt-7 hidden self-start text-xs font-semibold uppercase tracking-[0.28em] text-slate-400 sm:block sm:self-center",
+      "Professional Bio",
+    );
+    const bio = this.createElement(
+      "p",
+      "mt-6 max-w-md text-base leading-8 text-slate-600 sm:mx-auto sm:mt-4 sm:max-w-[32rem] sm:text-justify sm:text-[0.95rem] sm:leading-7 lg:max-w-md lg:text-base lg:leading-8",
+      memberData.bio,
+    );
+
+    const cta = this.createElement(
+      "a",
+      "mt-8 inline-flex min-h-14 w-full items-center justify-center gap-3 rounded-full bg-blue-600 px-6 py-4 text-base font-semibold text-white shadow-[0_14px_28px_rgba(37,99,235,0.28)] transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:min-h-12 sm:py-3.5 sm:text-[1.05rem] lg:min-h-14 lg:py-4 lg:text-lg",
+      memberData.ctaLabel,
+    );
+    cta.href = whatsappHref;
+    cta.target = "_blank";
+    cta.rel = "noopener noreferrer";
+
+    const ctaIcon = this.createElement("span", "inline-flex h-5 w-5 items-center justify-center");
+    ctaIcon.innerHTML = `
+      <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10m-11 9h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
+      </svg>
+    `;
+    cta.appendChild(ctaIcon);
+
+    const stats = this.createElement(
+      "div",
+      "mt-8 grid w-full grid-cols-3 rounded-2xl border border-blue-100 bg-slate-50 px-3 py-4 sm:px-4 sm:py-4 lg:px-5 lg:py-5",
+    );
+    const experienceStat = this.createStatItem(
+      memberData.stats?.experience || "10+",
+      "Anos Exp.",
+      "text-blue-600",
+    );
+    const patientsStat = this.createStatItem(
+      memberData.stats?.patients || "2k+",
+      "Pacientes",
+      "text-blue-600",
+    );
+    const ratingStat = this.createStatItem(
+      `⭐ ${memberData.stats?.rating || "5.0"}`,
+      "Rating",
+      "text-amber-500",
+    );
+
+    experienceStat.classList.add("border-r", "border-slate-200");
+    patientsStat.classList.add("border-r", "border-slate-200");
+    stats.append(experienceStat, patientsStat, ratingStat);
+
+    content.append(name, specialty, divider, bioLabel, bio, cta, stats);
+    modal.append(closeButton, avatarWrap, content);
+    overlay.appendChild(modal);
+
+    overlay.addEventListener("click", () => this.closeModal());
+    modal.addEventListener("click", (event) => event.stopPropagation());
+    closeButton.addEventListener("click", () => this.closeModal());
+
+    return { overlay, modal, closeButton };
+  }
+
+  openModal(memberData) {
+    if (!memberData) {
+      return;
+    }
+
+    if (this.activeModal) {
+      this.closeModal(true);
+    }
+
+    const { overlay, modal, closeButton } = this.createModal(memberData);
+
+    this.activeMember = memberData;
+    this.activeModal = overlay;
+    this.bodyOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.body.appendChild(overlay);
+
+    this.onModalKeydown = (event) => {
+      if (event.key === "Escape") {
+        this.closeModal();
+      }
+    };
+
+    window.addEventListener("keydown", this.onModalKeydown);
+
+    requestAnimationFrame(() => {
+      overlay.classList.remove("bg-slate-950/0", "opacity-0", "backdrop-blur-0");
+      overlay.classList.add("bg-slate-950/45", "opacity-100", "backdrop-blur-md");
+      modal.classList.remove("translate-y-10", "sm:scale-95");
+      modal.classList.add("translate-y-0", "sm:scale-100");
+      closeButton.focus();
+    });
+  }
+
+  closeModal(force = false) {
+    if (!this.activeModal) {
+      return;
+    }
+
+    const overlay = this.activeModal;
+    const modal = overlay.firstElementChild;
+
+    if (this.onModalKeydown) {
+      window.removeEventListener("keydown", this.onModalKeydown);
+      this.onModalKeydown = null;
+    }
+
+    clearTimeout(this.modalCloseTimeout);
+    document.body.style.overflow = this.bodyOverflow;
+    this.bodyOverflow = "";
+    this.activeModal = null;
+    this.activeMember = null;
+
+    if (force) {
+      overlay.remove();
+      return;
+    }
+
+    overlay.classList.remove("bg-slate-950/45", "opacity-100", "backdrop-blur-md");
+    overlay.classList.add("bg-slate-950/0", "opacity-0", "backdrop-blur-0");
+
+    if (modal) {
+      modal.classList.remove("translate-y-0", "sm:scale-100");
+      modal.classList.add("translate-y-10", "sm:scale-95");
+    }
+
+    this.modalCloseTimeout = window.setTimeout(() => {
+      overlay.remove();
+    }, 280);
   }
 }
 
