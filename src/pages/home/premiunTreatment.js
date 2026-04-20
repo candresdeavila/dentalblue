@@ -8,6 +8,8 @@ export function renderPremiun() {
   section.className =
     "container mx-auto bg-blue-600 text-white rounded-[40px] p-10 md:p-16 mb-20";
   section.dataset.lang = getLang();
+  const whatsappMessage = encodeURIComponent(t("common.whatsappMessage"));
+  const whatsappHref = `https://wa.me/573232050782?text=${whatsappMessage}`;
 
   section.innerHTML = `
 <div>
@@ -22,9 +24,14 @@ export function renderPremiun() {
       ${t("premium.primaryCta")}
     </a>
 
-    <button class="border border-white hover:bg-white hover:text-[#3B68FF] font-semibold px-8 py-3 rounded-xl transition">
+     <a 
+      href="${whatsappHref}" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      class="border border-white hover:bg-white hover:text-[#3B68FF] font-semibold px-8 py-3 rounded-xl transition text-center"
+     >
       ${t("premium.secondaryCta")}
-    </button>
+     </a>
   </div>
 </div>
 `;

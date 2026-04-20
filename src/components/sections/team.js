@@ -51,16 +51,18 @@ class TeamSection extends HTMLElement {
   }
 
   getMembers() {
+    const memberTranslations = t("team.members");
+
     return [
       {
         name: "Dra. Angelica Cervantes",
         role: t("team.roles.leadDentist"),
-        specialty: "Lead Dentist / Rehabilitacion Oral",
+        specialty: memberTranslations?.[0]?.specialty,
         img: "/assets/images/team/dental_blue_staff1.webp",
         imageStyle:
           "object-fit: contain; object-position: center bottom; background: white;",
-        bio: "Especialista en rehabilitacion oral y estetica dental avanzada con mas de una decada transformando sonrisas. La Dra. Cervantes combina la precision clinica con un enfoque humano para garantizar una experiencia segura, cercana y de excelencia.",
-        ctaLabel: "Agendar Cita con Dra. Cervantes",
+        bio: memberTranslations?.[0]?.bio,
+        ctaLabel: memberTranslations?.[0]?.ctaLabel,
         stats: {
           experience: "10+",
           patients: "2k+",
@@ -70,43 +72,43 @@ class TeamSection extends HTMLElement {
       {
         name: "Mariana",
         role: t("team.roles.dentalHygienist"),
-        specialty: "Dental Hygienist / Profilaxis Clinica",
+        specialty: memberTranslations?.[1]?.specialty,
         img: "/assets/images/team/dental_blue_staff2.webp",
         imageStyle:
           "object-fit: contain; object-position: center bottom; background: white;",
-        bio: "Mariana acompana a cada paciente con una atencion preventiva detallada y amable. Su enfoque en higiene oral y educacion personalizada ayuda a mantener sonrisas saludables y tratamientos mas duraderos.",
-        ctaLabel: "Agendar Cita con Mariana",
+        bio: memberTranslations?.[1]?.bio,
+        ctaLabel: memberTranslations?.[1]?.ctaLabel,
         stats: {
-          experience: "8+",
-          patients: "1.5k+",
+          experience: "3+",
+          patients: "500+",
           rating: "5.0",
         },
       },
       {
         name: "Dr. Luis Barros",
         role: t("team.roles.orthodontist"),
-        specialty: "Orthodontist / Diseno de Sonrisa",
+        specialty: memberTranslations?.[2]?.specialty,
         img: "/assets/images/team/dental_blue_staff3.webp",
         imageStyle:
           "object-fit: contain; object-position: center bottom; background: white;",
-        bio: "El Dr. Barros desarrolla planes de ortodoncia que equilibran funcion, estetica y comodidad. Trabaja con tecnologia de diagnostico actual para ofrecer resultados precisos y progresivos.",
-        ctaLabel: "Agendar Cita con Dr. Barros",
+        bio: memberTranslations?.[2]?.bio,
+        ctaLabel: memberTranslations?.[2]?.ctaLabel,
         stats: {
-          experience: "9+",
-          patients: "1.8k+",
-          rating: "4.9",
+          experience: "10+",
+          patients: "2k+",
+          rating: "5.0",
         },
       },
       {
         name: "Dr. Yolanda Alonso",
         role: t("team.roles.endodontist"),
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
-        specialty: "Endodontist / Tratamientos de Conducto",
-        bio: "La Dra. Alonso se especializa en diagnostico preciso y tratamientos endodonticos conservadores. Su prioridad es aliviar el dolor, preservar piezas dentales y dar tranquilidad en cada etapa del proceso.",
-        ctaLabel: "Agendar Cita con Dra. Alonso",
+        specialty: memberTranslations?.[3]?.specialty,
+        bio: memberTranslations?.[3]?.bio,
+        ctaLabel: memberTranslations?.[3]?.ctaLabel,
         stats: {
-          experience: "11+",
-          patients: "2.3k+",
+          experience: "10+",
+          patients: "2k+",
           rating: "5.0",
         },
       },
@@ -114,12 +116,12 @@ class TeamSection extends HTMLElement {
         name: "Dr. Joyce Barrios",
         role: t("team.roles.pediatricDentist"),
         img: "/assets/images/hero/dentista-con-herramientas-de-odontologia-aislado.webp",
-        specialty: "Pediatric Dentist / Odontologia Infantil",
-        bio: "La Dra. Barrios crea experiencias positivas para ninos y familias con una atencion paciente, clara y cercana. Su practica se centra en prevencion temprana y acompanamiento integral del desarrollo oral infantil.",
-        ctaLabel: "Agendar Cita con Dra. Barrios",
+        specialty: memberTranslations?.[4]?.specialty,
+        bio: memberTranslations?.[4]?.bio,
+        ctaLabel: memberTranslations?.[4]?.ctaLabel,
         stats: {
-          experience: "7+",
-          patients: "1.2k+",
+          experience: "10+",
+          patients: "2k+",
           rating: "5.0",
         },
       },
@@ -404,7 +406,7 @@ class TeamSection extends HTMLElement {
       "absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-100 text-slate-500 transition hover:bg-slate-200 hover:text-slate-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 sm:right-5 sm:top-5",
     );
     closeButton.type = "button";
-    closeButton.setAttribute("aria-label", "Cerrar modal");
+    closeButton.setAttribute("aria-label", t("team.closeModalAria"));
     closeButton.innerHTML = `
       <svg aria-hidden="true" viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M6 6l12 12M18 6L6 18" />
@@ -430,7 +432,10 @@ class TeamSection extends HTMLElement {
 
     avatarWrap.appendChild(avatar);
 
-    const content = this.createElement("div", "flex flex-col items-center text-center");
+    const content = this.createElement(
+      "div",
+      "flex flex-col items-center text-center",
+    );
     const name = this.createElement(
       "h3",
       "text-[1.95rem] font-semibold leading-tight tracking-tight text-slate-950 sm:text-[1.85rem] lg:text-[2.15rem]",
@@ -452,7 +457,7 @@ class TeamSection extends HTMLElement {
     const bioLabel = this.createElement(
       "p",
       "mt-7 hidden self-start text-xs font-semibold uppercase tracking-[0.28em] text-slate-400 sm:block sm:self-center",
-      "Professional Bio",
+      t("team.bioLabel"),
     );
     const bio = this.createElement(
       "p",
@@ -469,7 +474,10 @@ class TeamSection extends HTMLElement {
     cta.target = "_blank";
     cta.rel = "noopener noreferrer";
 
-    const ctaIcon = this.createElement("span", "inline-flex h-5 w-5 items-center justify-center");
+    const ctaIcon = this.createElement(
+      "span",
+      "inline-flex h-5 w-5 items-center justify-center",
+    );
     ctaIcon.innerHTML = `
       <svg aria-hidden="true" viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2">
         <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10m-11 9h12a2 2 0 002-2V7a2 2 0 00-2-2H6a2 2 0 00-2 2v10a2 2 0 002 2z" />
@@ -483,17 +491,17 @@ class TeamSection extends HTMLElement {
     );
     const experienceStat = this.createStatItem(
       memberData.stats?.experience || "10+",
-      "Anos Exp.",
+      t("team.stats.experience"),
       "text-blue-600",
     );
     const patientsStat = this.createStatItem(
       memberData.stats?.patients || "2k+",
-      "Pacientes",
+      t("team.stats.patients"),
       "text-blue-600",
     );
     const ratingStat = this.createStatItem(
       `⭐ ${memberData.stats?.rating || "5.0"}`,
-      "Rating",
+      t("team.stats.rating"),
       "text-amber-500",
     );
 
@@ -538,8 +546,16 @@ class TeamSection extends HTMLElement {
     window.addEventListener("keydown", this.onModalKeydown);
 
     requestAnimationFrame(() => {
-      overlay.classList.remove("bg-slate-950/0", "opacity-0", "backdrop-blur-0");
-      overlay.classList.add("bg-slate-950/45", "opacity-100", "backdrop-blur-md");
+      overlay.classList.remove(
+        "bg-slate-950/0",
+        "opacity-0",
+        "backdrop-blur-0",
+      );
+      overlay.classList.add(
+        "bg-slate-950/45",
+        "opacity-100",
+        "backdrop-blur-md",
+      );
       modal.classList.remove("translate-y-10", "sm:scale-95");
       modal.classList.add("translate-y-0", "sm:scale-100");
       closeButton.focus();
@@ -570,7 +586,11 @@ class TeamSection extends HTMLElement {
       return;
     }
 
-    overlay.classList.remove("bg-slate-950/45", "opacity-100", "backdrop-blur-md");
+    overlay.classList.remove(
+      "bg-slate-950/45",
+      "opacity-100",
+      "backdrop-blur-md",
+    );
     overlay.classList.add("bg-slate-950/0", "opacity-0", "backdrop-blur-0");
 
     if (modal) {

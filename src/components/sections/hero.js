@@ -155,9 +155,9 @@ class HeroSection extends HTMLElement {
 
               <div class="mt-14 flex items-center gap-6">
                 <div class="flex items-center">
-                  <img src="/assets/images/team/dental_blue_staff1.webp" alt="${t("common.patientAlt")}" class="h-11 w-11 rounded-full border-2 border-white object-cover shadow-md">
-                  <img src="/assets/images/team/dental_blue_staff2.webp" alt="${t("common.patientAlt")}" class="-ml-3 h-11 w-11 rounded-full border-2 border-white object-cover shadow-md">
-                  <img src="/assets/images/team/dental_blue_staff3.webp" alt="${t("common.patientAlt")}" class="-ml-3 h-11 w-11 rounded-full border-2 border-white object-cover shadow-md">
+                  <img src="/assets/images/hero/generic-avatar-1.jpg" alt="${t("common.patientAlt")}" class="h-11 w-11 rounded-full border-2 border-white object-cover shadow-md">
+                  <img src="/assets/images/hero/generic-avatar-2.jpg" alt="${t("common.patientAlt")}" class="-ml-3 h-11 w-11 rounded-full border-2 border-white object-cover shadow-md">
+                  <img src="/assets/images/hero/generic-avatar-3.jpg" alt="${t("common.patientAlt")}" class="-ml-3 h-11 w-11 rounded-full border-2 border-white object-cover shadow-md">
                   <div class="-ml-3 flex h-11 w-11 items-center justify-center rounded-full border-2 border-white bg-blue-600 text-sm font-semibold text-white shadow-md">
                     ${t("hero.home.socialProof")}
                   </div>
@@ -202,6 +202,8 @@ class HeroSection extends HTMLElement {
   renderAbout() {
     const aboutHighlightClass =
       getLang() === "en" ? "text-blue-600 md:block lg:inline" : "text-blue-600";
+    const whatsappMessage = encodeURIComponent(t("common.whatsappMessage"));
+    const whatsappHref = `https://wa.me/573232050782?text=${whatsappMessage}`;
 
     return `
       <section class="bg-white" aria-label="${t("hero.about.ariaLabel")}">
@@ -220,7 +222,7 @@ class HeroSection extends HTMLElement {
                   <a href="#team" class="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-colors">
                     ${t("hero.about.primaryCta")}
                   </a>
-                  <a href="#contact" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm">
+                  <a href="${whatsappHref}" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm">
                     ${t("hero.about.secondaryCta")}
                   </a>
                 </div>
