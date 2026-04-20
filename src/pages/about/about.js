@@ -8,6 +8,8 @@ export function renderAboutUs() {
   const section = document.createElement("section");
   section.className = "bg-white";
   section.dataset.lang = getLang();
+  const whatsappMessage = encodeURIComponent(t("common.whatsappMessage"));
+  const whatsappHref = `https://wa.me/573232050782?text=${whatsappMessage}`;
 
   section.innerHTML = `
     <div class="py-20 bg-gray-50">
@@ -132,10 +134,10 @@ export function renderAboutUs() {
             ${t("aboutPage.ctaBody")}
           </p>
           <div class="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="#contact" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm">
+            <a href="${whatsappHref}" target="_blank" rel="noopener noreferrer" class="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-colors shadow-sm">
               ${t("common.bookAppointment")}
             </a>
-            <a href="#contact" class="border border-white text-gray-900 bg-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
+            <a href="${whatsappHref}" target="_blank" rel="noopener noreferrer" class="border border-white text-gray-900 bg-white px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-colors">
               ${t("common.contactUs")}
             </a>
           </div>

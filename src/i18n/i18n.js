@@ -5,6 +5,9 @@ export const translations = {
       whatsappMessage:
         "Hello, I would like to schedule an appointment at Dental Blue.",
       yearsExperience: "8+ Years Experience",
+      certifiedClinic: "Certified Dental Clinic",
+      hygieneStandards: "International hygiene standards",
+      ratedByPatients: "Rated by our patients",
       contactUs: "Contact Us",
       learnMore: "Learn More",
       scheduleCall: "Schedule a Call",
@@ -16,7 +19,7 @@ export const translations = {
     },
     header: {
       about: "About Us",
-      services: "Our Services",
+      services: "Services",
       team: "Team",
       blog: "Blog",
       contact: "Contact Us",
@@ -48,11 +51,17 @@ export const translations = {
     hero: {
       home: {
         ariaLabel: "Home hero section",
-        titleIntro: "Welcome to",
+        eyebrow: "CERTIFIED DENTAL CLINIC",
+        titleLine1: "We build",
+        titleHighlight: "smiles",
+        titleLine2: "with",
+        titleLine3: "love",
         paragraph:
           "Our experienced dental team offers a blend of extensive knowledge and personalized professional care tailored to your specific needs.",
         primaryCta: "View Services",
-        secondaryCta: "Schedule a Call",
+        secondaryCta: "Book Appointment",
+        socialProof: "+1k",
+        ratingScore: "4.9/5",
       },
       about: {
         ariaLabel: "About hero section",
@@ -60,7 +69,7 @@ export const translations = {
         titlePrefix: "Transforming Smiles,",
         titleHighlight: "Changing Lives",
         paragraph:
-          "At Dental Blue, we believe everyone deserves a healthy, beautiful smile. For over 12 years, we've been dedicated to providing exceptional dental care with a personal touch that makes our patients feel like family.",
+          "At Dental Blue, we believe everyone deserves a healthy, beautiful smile. For over 9 years, we've been dedicated to providing exceptional dental care with a personal touch that makes our patients feel like family.",
         primaryCta: "Meet Our Team",
         secondaryCta: "Schedule a Visit",
       },
@@ -137,6 +146,13 @@ export const translations = {
       title: "Professional and Skilled Dentist Team",
       prevAria: "Previous team members",
       nextAria: "Next team members",
+      closeModalAria: "Close profile",
+      bioLabel: "Professional Bio",
+      stats: {
+        experience: "Years Exp.",
+        patients: "Patients",
+        rating: "Rating",
+      },
       roles: {
         leadDentist: "Lead Dentist",
         dentalHygienist: "Dental Hygienist",
@@ -144,6 +160,38 @@ export const translations = {
         endodontist: "Endodontist",
         pediatricDentist: "Pediatric Dentist",
       },
+      members: [
+        {
+          name: "Dra. Angelica Cervantes",
+          specialty: "Lead Dentist / Oral Rehabilitation",
+          bio: "Specialist in oral rehabilitation and advanced dental aesthetics with more than a decade transforming smiles. Dr. Cervantes combines clinical precision with a human approach to deliver a safe, warm, and high-quality experience.",
+          ctaLabel: "Book Appointment with Dr. Cervantes",
+        },
+        {
+          name: "Mariana",
+          specialty: "Dental Hygienist / Clinical Prophylaxis",
+          bio: "Mariana supports every patient with detailed and caring preventive attention. Her focus on oral hygiene and personalized education helps maintain healthier smiles and longer-lasting treatments.",
+          ctaLabel: "Book Appointment with Mariana",
+        },
+        {
+          name: "Dr. Luis Barros",
+          specialty: "Orthodontist / Dental Appliances",
+          bio: "Dr. Barros develops orthodontic treatment plans that balance function, aesthetics, and comfort. He works with current diagnostic technology to provide precise and progressive results.",
+          ctaLabel: "Book Appointment with Dr. Barros",
+        },
+        {
+          name: "Dr. Yolanda Alonso",
+          specialty: "Endodontist / Root Canal Treatments",
+          bio: "Dr. Alonso specializes in precise diagnosis and conservative endodontic treatments. Her priority is to relieve pain, preserve teeth, and provide reassurance at every stage of the process.",
+          ctaLabel: "Book Appointment with Dr. Alonso",
+        },
+        {
+          name: "Dr. Joyce Barrios",
+          specialty: "Pediatric Dentist / Pediatric Dentistry",
+          bio: "Dr. Barrios creates positive experiences for children and families with patient, clear, and approachable care. Her practice focuses on early prevention and comprehensive support for children's oral development.",
+          ctaLabel: "Book Appointment with Dr. Barrios",
+        },
+      ],
     },
     chat: {
       toggleAria: "Open Dental Blue chat",
@@ -167,9 +215,9 @@ export const translations = {
       storyParagraph1:
         "Dental Blue was founded in 2017 by Dr. Angelica Cervantes with a simple yet powerful mission: to make quality dental care accessible to everyone while creating a warm, welcoming environment that puts patients at ease.",
       storyParagraph2:
-        "What started as a single clinic has grown into a network of 5+ branches, each maintaining the same commitment to excellence and personalized care that defined our first location.",
+        "What started as a single clinic has grown into the best dental clinic in the sector, maintaining the same commitment to excellence and personalized care.",
       storyParagraph3:
-        "Today, our team of 10+ skilled dentists continues to uphold the values that made Dental Blue a household name, combining cutting-edge technology with compassionate care to deliver outstanding results.",
+        "Today, our team of 5+ skilled dentists continues to uphold the values that made Dental Blue a household name, combining cutting-edge technology with compassionate care to deliver outstanding results.",
       timeline: [
         {
           year: "2017",
@@ -179,8 +227,8 @@ export const translations = {
         },
         {
           year: "2019",
-          title: "Expansion",
-          description: "Opened 5 additional branches across the region.",
+          title: "Consolidation",
+          description: "Consolidated as the best dental clinic in the sector.",
         },
         {
           year: "2022",
@@ -231,10 +279,10 @@ export const translations = {
       ],
       statsTitle: "The Reasons We're Unbeatable",
       stats: [
-        { value: "5+", label: "Total Branches" },
-        { value: "8+", label: "Years Experience" },
-        { value: "5k+", label: "Smiles Restored" },
-        { value: "10+", label: "Skilled Dentists" },
+        { value: "1+", label: "Total Branch" },
+        { value: "9+", label: "Years Experience" },
+        { value: "1k+", label: "Smiles Restored" },
+        { value: "5+", label: "Skilled Dentists" },
       ],
       ctaTitle: "Ready to Transform Your Smile?",
       ctaBody:
@@ -243,10 +291,10 @@ export const translations = {
     blog: {
       statsTitle: "The Reasons Dental Blue is Unbeatable",
       stats: [
-        { value: "5+", label: "Total Branches" },
-        { value: "8+", label: "Years Experience" },
-        { value: "5k+", label: "Smiles Restored" },
-        { value: "10+", label: "Skilled Dentists" },
+        { value: "1+", label: "Total Branch" },
+        { value: "9+", label: "Years Experience" },
+        { value: "1k+", label: "Smiles Restored" },
+        { value: "5+", label: "Skilled Dentists" },
       ],
       differencesTitle: "What Makes Us Different From Others",
       differences: [
@@ -275,17 +323,17 @@ export const translations = {
         "We are proud to have gained the trust of countless patients through excellent service and professional care.",
       testimonials: [
         {
-          quote: "\"Amazing experience and friendly staff!\"",
+          quote: '"Amazing experience and friendly staff!"',
           name: "Ashley Williams",
           role: "Patient",
         },
         {
-          quote: "\"They truly care about your smile!\"",
+          quote: '"They truly care about your smile!"',
           name: "Renny Thompson",
           role: "Patient",
         },
         {
-          quote: "\"State-of-the-art technology and service.\"",
+          quote: '"State-of-the-art technology and service."',
           name: "Dr. Lisa Moreno",
           role: "Patient",
         },
@@ -316,6 +364,9 @@ export const translations = {
       dentalBlueLogoAlt: "Logo de Dental Blue",
       whatsappMessage: "Hola, quiero agendar una cita en Dental Blue.",
       yearsExperience: "8+ años de experiencia",
+      certifiedClinic: "Clínica Certificada",
+      hygieneStandards: "Estándares internacionales de higiene",
+      ratedByPatients: "Calificado por nuestros pacientes",
       contactUs: "Contáctanos",
       learnMore: "Conoce más",
       scheduleCall: "Agenda una llamada",
@@ -327,7 +378,7 @@ export const translations = {
     },
     header: {
       about: "Sobre Nosotros",
-      services: "Nuestros Servicios",
+      services: "Servicios",
       team: "Equipo",
       blog: "Blog",
       contact: "Contáctanos",
@@ -359,11 +410,17 @@ export const translations = {
     hero: {
       home: {
         ariaLabel: "Sección principal de inicio",
-        titleIntro: "Bienvenido a",
+        eyebrow: "CLÍNICA DENTAL CERTIFICADA",
+        titleLine1: "Construimos",
+        titleHighlight: "sonrisas",
+        titleLine2: "con",
+        titleLine3: "amor",
         paragraph:
           "Nuestro experimentado equipo dental ofrece una combinación de amplio conocimiento y atención profesional personalizada, adaptada a tus necesidades específicas.",
         primaryCta: "Ver servicios",
-        secondaryCta: "Agenda una llamada",
+        secondaryCta: "Agendar cita",
+        socialProof: "+1k",
+        ratingScore: "4.9/5",
       },
       about: {
         ariaLabel: "Sección principal sobre nosotros",
@@ -371,7 +428,7 @@ export const translations = {
         titlePrefix: "Transformando Sonrisas,",
         titleHighlight: "Cambiando Vidas",
         paragraph:
-          "En Dental Blue, creemos que todos merecen una sonrisa sana y hermosa. Durante más de 12 años, nos hemos dedicado a brindar una atención dental excepcional con un trato cercano que hace que nuestros pacientes se sientan como en familia.",
+          "En Dental Blue, creemos que todos merecen una sonrisa sana y hermosa. Durante más de 9 años, nos hemos dedicado a brindar una atención dental excepcional con un trato cercano que hace que nuestros pacientes se sientan como en familia.",
         primaryCta: "Conoce a nuestro equipo",
         secondaryCta: "Agenda una visita",
       },
@@ -448,6 +505,13 @@ export const translations = {
       title: "Equipo de Dentistas Profesionales y Calificados",
       prevAria: "Miembros anteriores del equipo",
       nextAria: "Siguientes miembros del equipo",
+      closeModalAria: "Cerrar perfil",
+      bioLabel: "Biografía Profesional",
+      stats: {
+        experience: "Años Exp.",
+        patients: "Pacientes",
+        rating: "Rating",
+      },
       roles: {
         leadDentist: "Dentista Principal",
         dentalHygienist: "Higienista Dental",
@@ -455,6 +519,38 @@ export const translations = {
         endodontist: "Endodoncista",
         pediatricDentist: "Odontopediatra",
       },
+      members: [
+        {
+          name: "Dra. Angelica Cervantes",
+          specialty: "Dentista Principal / Rehabilitación Oral",
+          bio: "Especialista en rehabilitación oral y estética dental avanzada con más de una década transformando sonrisas. La Dra. Cervantes combina la precisión clínica con un enfoque humano para garantizar una experiencia segura, cercana y de excelencia.",
+          ctaLabel: "Agendar Cita con Dra. Cervantes",
+        },
+        {
+          name: "Mariana",
+          specialty: "Higienista Dental / Profilaxis Clínica",
+          bio: "Mariana acompaña a cada paciente con una atención preventiva detallada y amable. Su enfoque en higiene oral y educación personalizada ayuda a mantener sonrisas saludables y tratamientos más duraderos.",
+          ctaLabel: "Agendar Cita con Mariana",
+        },
+        {
+          name: "Dr. Luis Barros",
+          specialty: "Ortodoncista / Aparatologia Dental",
+          bio: "El Dr. Barros desarrolla planes de ortodoncia que equilibran función, estética y comodidad. Trabaja con tecnología de diagnóstico actual para ofrecer resultados precisos y progresivos.",
+          ctaLabel: "Agendar Cita con Dr. Barros",
+        },
+        {
+          name: "Dr. Yolanda Alonso",
+          specialty: "Endodoncista / Tratamientos de Conducto",
+          bio: "La Dra. Alonso se especializa en diagnóstico preciso y tratamientos endodónticos conservadores. Su prioridad es aliviar el dolor, preservar piezas dentales y dar tranquilidad en cada etapa del proceso.",
+          ctaLabel: "Agendar Cita con Dra. Alonso",
+        },
+        {
+          name: "Dr. Joyce Barrios",
+          specialty: "Odontopediatra / Odontología Infantil",
+          bio: "La Dra. Barrios crea experiencias positivas para niños y familias con una atención paciente, clara y cercana. Su práctica se centra en prevención temprana y acompañamiento integral del desarrollo oral infantil.",
+          ctaLabel: "Agendar Cita con Dra. Barrios",
+        },
+      ],
     },
     chat: {
       toggleAria: "Abrir chat de Dental Blue",
@@ -478,9 +574,9 @@ export const translations = {
       storyParagraph1:
         "Dental Blue fue fundada en 2017 por Dr. Angelica Cervantes con una misión simple pero poderosa: hacer que la atención dental de calidad sea accesible para todos mientras creamos un ambiente cálido y acogedor que haga sentir tranquilos a los pacientes.",
       storyParagraph2:
-        "Lo que comenzó como una sola clínica ha crecido hasta convertirse en una red de más de 5 sedes, cada una manteniendo el mismo compromiso con la excelencia y la atención personalizada que definió nuestra primera ubicación.",
+        "Lo que comenzó como una sola clínica ha crecido hasta convertirse en la mejor clínica dental del sector, manteniendo el mismo compromiso con la excelencia y la atención personalizada que nos define.",
       storyParagraph3:
-        "Hoy, nuestro equipo de más de 10 dentistas calificados continúa defendiendo los valores que hicieron de Dental Blue un nombre reconocido, combinando tecnología de punta con atención compasiva para ofrecer resultados excepcionales.",
+        "Hoy, nuestro equipo de más de 5 dentistas calificados continúa defendiendo los valores que hicieron de Dental Blue un nombre reconocido, combinando tecnología de punta con atención compasiva para ofrecer resultados excepcionales.",
       timeline: [
         {
           year: "2017",
@@ -490,8 +586,8 @@ export const translations = {
         },
         {
           year: "2019",
-          title: "Expansión",
-          description: "Abrimos 5 sedes adicionales en la región.",
+          title: "Consolidación",
+          description: "Consolidada como la mejor clínica dental del sector.",
         },
         {
           year: "2022",
@@ -542,10 +638,10 @@ export const translations = {
       ],
       statsTitle: "Las Razones por las que Somos Inigualables",
       stats: [
-        { value: "5+", label: "Sucursales" },
-        { value: "8+", label: "Años de Experiencia" },
-        { value: "5k+", label: "Sonrisas Restauradas" },
-        { value: "10+", label: "Dentistas Calificados" },
+        { value: "1+", label: "Sucursal" },
+        { value: "9+", label: "Años de Experiencia" },
+        { value: "1k+", label: "Sonrisas Restauradas" },
+        { value: "5+", label: "Dentistas Calificados" },
       ],
       ctaTitle: "¿Listo para Transformar Tu Sonrisa?",
       ctaBody:
@@ -554,10 +650,10 @@ export const translations = {
     blog: {
       statsTitle: "Las Razones por las que Dental Blue es Inigualable",
       stats: [
-        { value: "5+", label: "Sucursales" },
-        { value: "8+", label: "Años de Experiencia" },
-        { value: "5k+", label: "Sonrisas Restauradas" },
-        { value: "10+", label: "Dentistas Calificados" },
+        { value: "1+", label: "Sucursal" },
+        { value: "9+", label: "Años de Experiencia" },
+        { value: "1k+", label: "Sonrisas Restauradas" },
+        { value: "5+", label: "Dentistas Calificados" },
       ],
       differencesTitle: "Qué Nos Hace Diferentes",
       differences: [
@@ -586,17 +682,17 @@ export const translations = {
         "Nos enorgullece haber ganado la confianza de innumerables pacientes gracias a un servicio excelente y atención profesional.",
       testimonials: [
         {
-          quote: "\"¡Una experiencia increíble y un personal muy amable!\"",
+          quote: '"¡Una experiencia increíble y un personal muy amable!"',
           name: "Ashley Williams",
           role: "Paciente",
         },
         {
-          quote: "\"¡De verdad se preocupan por tu sonrisa!\"",
+          quote: '"¡De verdad se preocupan por tu sonrisa!"',
           name: "Renny Thompson",
           role: "Paciente",
         },
         {
-          quote: "\"Tecnología de punta y servicio excelente.\"",
+          quote: '"Tecnología de punta y servicio excelente."',
           name: "Dr. Lisa Moreno",
           role: "Paciente",
         },
