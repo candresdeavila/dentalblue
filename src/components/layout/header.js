@@ -49,11 +49,11 @@ class AppHeader extends HTMLElement {
 
     return `
       <div class="inline-flex items-center gap-1.5 md:text-xs lg:text-sm whitespace-nowrap" aria-label="${t("header.languageToggleAria")}">
-        <button type="button" data-lang-toggle class="${lang === "es" ? activeClass : inactiveClass}">
+        <button type="button" data-lang-toggle="es" aria-pressed="${lang === "es"}" class="${lang === "es" ? activeClass : inactiveClass}">
           ${t("language.es")}
         </button>
         <span class="text-gray-300">|</span>
-        <button type="button" data-lang-toggle class="${lang === "en" ? activeClass : inactiveClass}">
+        <button type="button" data-lang-toggle="en" aria-pressed="${lang === "en"}" class="${lang === "en" ? activeClass : inactiveClass}">
           ${t("language.en")}
         </button>
       </div>
@@ -159,8 +159,14 @@ class AppHeader extends HTMLElement {
     this.menu?.classList.toggle("hidden");
   }
 
-  handleLanguageToggle() {
-    const nextLang = getLang() === "es" ? "en" : "es";
+  handleLanguageToggle(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const nextLang = event.currentTarget?.dataset?.langToggle;
+    if (!nextLang) return;
+    if (getLang() === nextLang) return;
+
     setLang(nextLang);
     document.documentElement.lang = nextLang;
     window.dispatchEvent(new CustomEvent("langchange"));

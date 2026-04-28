@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("langchange", () => {
     syncDocumentLanguage();
     renderPage(currentPageRenderer);
-    handleHashNavigation();
   });
 
   // Footer (global)

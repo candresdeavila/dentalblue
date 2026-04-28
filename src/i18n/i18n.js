@@ -1,3 +1,6 @@
+const DEFAULT_LANG = "es";
+const SUPPORTED_LANGS = ["en", "es"];
+
 export const translations = {
   en: {
     common: {
@@ -52,6 +55,12 @@ export const translations = {
       home: {
         ariaLabel: "Home hero section",
         eyebrow: "CERTIFIED DENTAL CLINIC",
+        title: {
+          beforeHighlight: "We build",
+          highlight: "smiles",
+          afterHighlight: "with love",
+        },
+        // Backward-compatibility keys for existing components.
         titleLine1: "We build",
         titleHighlight: "smiles",
         titleLine2: "with",
@@ -66,6 +75,11 @@ export const translations = {
       about: {
         ariaLabel: "About hero section",
         eyebrow: "About Us",
+        title: {
+          beforeHighlight: "Transforming Smiles,",
+          highlight: "Changing Lives",
+        },
+        // Backward-compatibility keys for existing components.
         titlePrefix: "Transforming Smiles,",
         titleHighlight: "Changing Lives",
         paragraph:
@@ -411,6 +425,12 @@ export const translations = {
       home: {
         ariaLabel: "Sección principal de inicio",
         eyebrow: "CLÍNICA DENTAL CERTIFICADA",
+        title: {
+          beforeHighlight: "Construimos",
+          highlight: "sonrisas",
+          afterHighlight: "con amor",
+        },
+        // Backward-compatibility keys for existing components.
         titleLine1: "Construimos",
         titleHighlight: "sonrisas",
         titleLine2: "con",
@@ -425,6 +445,11 @@ export const translations = {
       about: {
         ariaLabel: "Sección principal sobre nosotros",
         eyebrow: "Sobre Nosotros",
+        title: {
+          beforeHighlight: "Transformando Sonrisas,",
+          highlight: "Cambiando Vidas",
+        },
+        // Backward-compatibility keys for existing components.
         titlePrefix: "Transformando Sonrisas,",
         titleHighlight: "Cambiando Vidas",
         paragraph:
@@ -728,18 +753,20 @@ function resolvePath(object, key) {
 }
 
 export function getLang() {
-  return localStorage.getItem("lang") || "es";
+  const savedLang = localStorage.getItem("lang");
+  return SUPPORTED_LANGS.includes(savedLang) ? savedLang : DEFAULT_LANG;
 }
 
 export function setLang(lang) {
-  localStorage.setItem("lang", lang);
+  const safeLang = SUPPORTED_LANGS.includes(lang) ? lang : DEFAULT_LANG;
+  localStorage.setItem("lang", safeLang);
 }
 
 export function t(key) {
   const lang = getLang();
   return (
     resolvePath(translations[lang], key) ??
-    resolvePath(translations.es, key) ??
+    resolvePath(translations[DEFAULT_LANG], key) ??
     key
   );
 }
